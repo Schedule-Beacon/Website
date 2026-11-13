@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight, School, Camera, HeartHandshake, ShieldCheck, Zap, Flame } from "lucide-react";
+import { ArrowRight, Camera } from "lucide-react";
 import { Link } from "react-router";
 import robertPhoto from "figma:asset/687e62d638bda0455a39e822668ff18ba3807236.png";
 import christopherPhoto from "figma:asset/3989bab4005258e45f6295f771dfe502dd481560.png";
@@ -13,7 +13,7 @@ const founders = [
     name: "Robert Hicks",
     role: "Co-Founder & CEO",
     photo: robertPhoto,
-    bio: "Robert Hicks co-founded Schedule Beacon after seeing firsthand how much a single schedule can shape what a student gets to learn. As CEO, he leads product design, business development, and public sector strategy. Robert graduated summa cum laude from Alfred University with a degree in Business Administration while playing four seasons of Men's Basketball, and later sharpened his view of how technology reaches government at Google Public Sector. He brings a competitor's work ethic and a builder's curiosity to every district partnership.",
+    bio: "Robert Hicks is a Co-Founder and the CEO of Schedule Beacon, where he leads product design, business development, and public sector strategy. He graduated summa cum laude from Alfred University with a degree in Business Administration and played four years on the Men's Basketball team. He also spent a summer with Google Public Sector, where he saw how public institutions evaluate and adopt new technology, an experience that shapes how Schedule Beacon works with districts.",
   },
   {
     name: "Christopher Coyle",
@@ -25,26 +25,35 @@ const founders = [
 
 const values = [
   {
-    icon: HeartHandshake,
     label: "We put people first",
     principle: "Technology is a tool; people are the purpose. Our team, partners, and communities come first.",
   },
   {
-    icon: ShieldCheck,
     label: "We act with integrity",
     principle: "Transparency, honesty, and ethical responsibility are non-negotiable, even when no one is watching.",
   },
   {
-    icon: Zap,
     label: "We are driving change",
     principle: "We bridge the gap between the private and public sectors and advocate for the better way.",
   },
   {
-    icon: Flame,
     label: "We are all in",
     principle: "Owner-level passion for our mission, our company, and the goals of every client we serve.",
   },
 ];
+
+function Eyebrow({ children, align = "center", tone = "gold" }: { children: string; align?: "center" | "left"; tone?: "gold" | "navy" }) {
+  const color = tone === "gold" ? "var(--university-gold)" : "var(--midnight-blue)";
+  return (
+    <div className={`flex items-center gap-3 mb-5 ${align === "center" ? "justify-center" : ""}`}>
+      <span className="h-px w-10" style={{ background: color }} />
+      <span className="text-xs uppercase" style={{ color, fontWeight: 700, letterSpacing: "0.25em" }}>
+        {children}
+      </span>
+      {align === "center" && <span className="h-px w-10" style={{ background: color }} />}
+    </div>
+  );
+}
 
 function FounderCard({ founder, index }: { founder: typeof founders[0]; index: number }) {
   return (
@@ -71,16 +80,16 @@ function FounderCard({ founder, index }: { founder: typeof founders[0]; index: n
       </div>
 
       <div className="p-8 flex-1">
-        <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-          <h3 className="text-[var(--midnight-blue)]" style={{ fontSize: "1.5rem", fontWeight: 800 }}>
+        <div className="mb-5 pb-5 border-b border-gray-100">
+          <h3 className="text-[var(--midnight-blue)]" style={{ fontSize: "1.6rem", fontWeight: 800, lineHeight: 1.2 }}>
             {founder.name}
           </h3>
-          <span
-            className="inline-block text-xs bg-[var(--midnight-blue)] text-[var(--university-gold)] px-3 py-1.5 rounded-full"
-            style={{ fontWeight: 700, letterSpacing: "0.03em" }}
+          <div
+            className="mt-1.5 text-xs uppercase text-[#B8860B]"
+            style={{ fontWeight: 700, letterSpacing: "0.2em" }}
           >
             {founder.role}
-          </span>
+          </div>
         </div>
         <p className="text-[var(--midnight-blue)]/70 text-[0.95rem]" style={{ lineHeight: 1.8 }}>
           {founder.bio}
@@ -114,12 +123,7 @@ export function About() {
 
         <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <span
-              className="inline-block text-sm bg-[var(--university-gold)] text-[var(--midnight-blue)] px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 700 }}
-            >
-              Our Story
-            </span>
+            <Eyebrow>Our Story</Eyebrow>
             <h1 className="text-5xl lg:text-6xl text-white mb-6" style={{ lineHeight: 1.1 }}>
               Built by students,{" "}
               <span className="text-[var(--university-gold)]">for students</span>
@@ -161,16 +165,12 @@ export function About() {
                   />
                 </div>
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-white rounded-xl shadow-xl p-5 border border-gray-100" style={{ zIndex: 3 }}>
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-[var(--university-gold)] rounded-xl flex items-center justify-center">
-                    <School className="w-6 h-6 text-[var(--midnight-blue)]" />
-                  </div>
-                  <div>
-                    <div className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 700 }}>
-                      Student-Built
-                    </div>
-                  </div>
+              <div
+                className="absolute -bottom-5 left-0 bg-[var(--midnight-blue)] px-6 py-4 shadow-xl border-l-4 border-[var(--university-gold)]"
+                style={{ zIndex: 3 }}
+              >
+                <div className="text-white text-sm uppercase" style={{ fontWeight: 700, letterSpacing: "0.2em" }}>
+                  Student-Built
                 </div>
               </div>
             </motion.div>
@@ -181,12 +181,7 @@ export function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <span
-                className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-[var(--soft-grey)] px-4 py-1.5 rounded-full mb-6"
-                style={{ fontWeight: 600 }}
-              >
-                OUR MISSION
-              </span>
+              <Eyebrow align="left" tone="navy">Our Mission</Eyebrow>
               <h2 className="text-4xl text-[var(--midnight-blue)] mb-6">
                 Equipping schools with the insights to put student success first
               </h2>
@@ -227,16 +222,11 @@ export function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-sm text-[var(--university-gold)] bg-[var(--university-gold)]/10 border border-[var(--university-gold)]/30 px-4 py-1.5 rounded-full mb-5"
-              style={{ fontWeight: 700, letterSpacing: "0.04em" }}
-            >
-              THE TEAM
-            </span>
+            <Eyebrow>The Team</Eyebrow>
             <h2 className="text-4xl lg:text-5xl text-white mb-5">Meet the founders</h2>
             <p className="text-white/65 text-lg max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
-              Two Alfred University teammates who traded the basketball court for the classroom's toughest
-              logistics problem, building the scheduling platform we wish our own schools had.
+              Two Alfred University student-athletes building the scheduling platform we wish our own schools
+              had.
             </p>
           </motion.div>
 
@@ -251,50 +241,46 @@ export function About() {
       {/* ── Values ──────────────────────────────────────────── */}
       <section className="py-20 bg-[#FFF8E5]">
         <div className="max-w-6xl mx-auto px-6">
-          <motion.div
-            className="text-center mb-12"
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <span
-              className="inline-block text-xs text-[var(--midnight-blue)]/60 tracking-widest mb-3"
-              style={{ fontWeight: 700 }}
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-12 items-start">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
-              OUR VALUES
-            </span>
-            <h2 className="text-3xl text-[var(--midnight-blue)]">What we stand for</h2>
-          </motion.div>
+              <Eyebrow align="left" tone="navy">Our Values</Eyebrow>
+              <h2 className="text-4xl text-[var(--midnight-blue)]" style={{ lineHeight: 1.15 }}>
+                What we stand for
+              </h2>
+            </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.label}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.08 }}
-                className="group relative bg-white rounded-2xl p-6 border border-[var(--university-gold)]/25 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 overflow-hidden"
-              >
-                <span
-                  className="absolute -top-3 right-3 text-7xl text-[var(--university-gold)]/20 select-none pointer-events-none"
-                  style={{ fontWeight: 800 }}
-                  aria-hidden="true"
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-10">
+              {values.map((v, i) => (
+                <motion.div
+                  key={v.label}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.45, delay: i * 0.08 }}
+                  className="relative pt-5 border-t-2 border-[var(--midnight-blue)]"
                 >
-                  0{i + 1}
-                </span>
-                <div className="relative w-11 h-11 rounded-xl bg-[var(--midnight-blue)] flex items-center justify-center mb-4 group-hover:bg-[var(--university-gold)] transition-colors duration-300">
-                  <v.icon className="w-5 h-5 text-[var(--university-gold)] group-hover:text-[var(--midnight-blue)] transition-colors duration-300" />
-                </div>
-                <div className="relative text-[var(--midnight-blue)] text-lg mb-2" style={{ fontWeight: 700 }}>
-                  {v.label}
-                </div>
-                <p className="relative text-[var(--midnight-blue)]/60 text-sm" style={{ lineHeight: 1.65 }}>
-                  {v.principle}
-                </p>
-              </motion.div>
-            ))}
+                  <div className="flex items-baseline gap-4">
+                    <span
+                      className="text-4xl text-[var(--university-gold)] leading-none"
+                      style={{ fontWeight: 800, WebkitTextStroke: "1px #B8860B" }}
+                    >
+                      0{i + 1}
+                    </span>
+                    <div className="text-[var(--midnight-blue)] text-xl" style={{ fontWeight: 800 }}>
+                      {v.label}
+                    </div>
+                  </div>
+                  <p className="mt-3 text-[var(--midnight-blue)]/65" style={{ lineHeight: 1.7 }}>
+                    {v.principle}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
