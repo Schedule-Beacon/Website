@@ -146,8 +146,8 @@ const steps = [
   },
   {
     number: "03",
-    title: "Publish & Adjust",
-    description: "Publish your schedule and make real-time edits as the year progresses, with conflict detection running automatically.",
+    title: "Publish to Your SIS",
+    description: "Publish your finalized schedule directly to your SIS, so it lands exactly where students, parents, and faculty need to see it.",
   },
 ];
 
@@ -675,9 +675,9 @@ export function Home() {
               {
                 number: "03",
                 icon: Rocket,
-                title: "Publish & Adjust",
+                title: "Publish to Your SIS",
                 description:
-                  "Publish your schedule and make real-time edits as the year progresses, with conflict detection running automatically.",
+                  "Publish your finalized schedule directly to your SIS, so it lands exactly where students, parents, and faculty need to see it.",
               },
             ].map((step, i) => (
               <motion.div

@@ -1,149 +1,9 @@
-import { motion, AnimatePresence } from "motion/react";
-import { MapPin, Clock, DollarSign, ArrowRight, X, ChevronDown } from "lucide-react";
-import { useMemo, useState } from "react";
+import { motion } from "motion/react";
+import { Mail } from "lucide-react";
 import { Link } from "react-router";
 import logoIcon from "../../assets/logo-watermark-hires.png";
-import {
-  openRoles,
-  DEPARTMENTS,
-  COMMITMENTS,
-  LOCATION_TYPES,
-  type Department,
-  type Commitment,
-  type LocationType,
-} from "../data/openRoles";
-
-const ALL = "All" as const;
-
-function FilterDropdown<T extends string>({
-  label,
-  options,
-  value,
-  onChange,
-}: {
-  label: string;
-  options: readonly T[];
-  value: T | typeof ALL;
-  onChange: (value: T | typeof ALL) => void;
-}) {
-  return (
-    <div>
-      <label
-        className="block text-[var(--midnight-blue)]/45 text-xs mb-2 uppercase tracking-wide"
-        style={{ fontWeight: 700, letterSpacing: "0.06em" }}
-      >
-        {label}
-      </label>
-      <div className="relative">
-        <select
-          value={value}
-          onChange={(e) => onChange(e.target.value as T | typeof ALL)}
-          className="w-full appearance-none px-4 py-2.5 pr-9 border border-gray-200 rounded-xl bg-white text-[var(--midnight-blue)] text-sm focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all cursor-pointer"
-          style={{ fontWeight: 600 }}
-        >
-          <option value={ALL}>All</option>
-          {options.map((option) => (
-            <option key={option} value={option}>
-              {option}
-            </option>
-          ))}
-        </select>
-        <ChevronDown className="w-4 h-4 text-[var(--midnight-blue)]/40 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
-      </div>
-    </div>
-  );
-}
-
-function RoleCard({ role }: { role: (typeof openRoles)[number] }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <Link
-        to={role.postingPath}
-        className="group block border border-gray-100 rounded-2xl bg-white hover:border-[var(--midnight-blue)]/20 hover:shadow-md transition-all duration-200 p-7 md:p-8"
-      >
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-          <div>
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <span
-                className="inline-block text-xs bg-[var(--university-gold)]/15 text-[var(--midnight-blue)] px-3 py-1 rounded-full"
-                style={{ fontWeight: 600 }}
-              >
-                {role.department}
-              </span>
-              <span
-                className="inline-block text-xs bg-[var(--soft-grey)] text-[var(--midnight-blue)]/60 px-3 py-1 rounded-full"
-                style={{ fontWeight: 600 }}
-              >
-                {role.commitment}
-              </span>
-              <span
-                className="inline-block text-xs bg-[var(--soft-grey)] text-[var(--midnight-blue)]/60 px-3 py-1 rounded-full"
-                style={{ fontWeight: 600 }}
-              >
-                {role.locationType}
-              </span>
-            </div>
-            <h3 className="text-2xl text-[var(--midnight-blue)] mb-1" style={{ fontWeight: 700 }}>
-              {role.title}
-            </h3>
-            <p className="text-[var(--midnight-blue)]/50 text-sm mb-4">{role.company}</p>
-
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-[var(--midnight-blue)]/65">
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4 text-[var(--midnight-blue)]/40" />
-                {role.hours}
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[var(--midnight-blue)]/40" />
-                {role.location}
-              </div>
-              <div className="flex items-center gap-2">
-                <DollarSign className="w-4 h-4 text-[var(--midnight-blue)]/40" />
-                {role.compensation}
-              </div>
-            </div>
-          </div>
-
-          <div
-            className="flex items-center gap-2 text-[var(--midnight-blue)] shrink-0 self-start md:self-center"
-            style={{ fontWeight: 700 }}
-          >
-            View Posting
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </div>
-        </div>
-      </Link>
-    </motion.div>
-  );
-}
 
 export function Careers() {
-  const [department, setDepartment] = useState<Department | typeof ALL>(ALL);
-  const [commitment, setCommitment] = useState<Commitment | typeof ALL>(ALL);
-  const [locationType, setLocationType] = useState<LocationType | typeof ALL>(ALL);
-
-  const filteredRoles = useMemo(() => {
-    return openRoles.filter((role) => {
-      if (department !== ALL && role.department !== department) return false;
-      if (commitment !== ALL && role.commitment !== commitment) return false;
-      if (locationType !== ALL && role.locationType !== locationType) return false;
-      return true;
-    });
-  }, [department, commitment, locationType]);
-
-  const activeFilterCount = [department, commitment, locationType].filter((v) => v !== ALL).length;
-
-  const clearFilters = () => {
-    setDepartment(ALL);
-    setCommitment(ALL);
-    setLocationType(ALL);
-  };
-
   return (
     <div>
       {/* ── Page Hero ───────────────────────────────────────── */}
@@ -197,67 +57,29 @@ export function Careers() {
           >
             <h2 className="text-3xl lg:text-4xl text-[var(--midnight-blue)] mb-4">Open Positions</h2>
             <p className="text-[var(--midnight-blue)]/55 text-lg max-w-2xl mx-auto">
-              Current opportunities to join the Schedule Beacon team.
+              There are no open positions at this time.
             </p>
           </motion.div>
 
-          {/* Filters */}
-          <div className="bg-white border border-gray-100 rounded-2xl p-6 md:p-7 mb-8">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              <FilterDropdown label="Department" options={DEPARTMENTS} value={department} onChange={setDepartment} />
-              <FilterDropdown
-                label="Time Commitment"
-                options={COMMITMENTS}
-                value={commitment}
-                onChange={setCommitment}
-              />
-              <FilterDropdown
-                label="Location"
-                options={LOCATION_TYPES}
-                value={locationType}
-                onChange={setLocationType}
-              />
+          <div className="bg-white border border-gray-100 border-l-4 border-l-[var(--university-gold)] rounded-2xl p-8 md:p-10 text-center shadow-sm">
+            <div className="w-12 h-12 mx-auto mb-5 rounded-xl bg-[var(--university-gold)]/15 flex items-center justify-center">
+              <Mail className="w-6 h-6 text-[var(--midnight-blue)]" />
             </div>
-
-            <AnimatePresence>
-              {activeFilterCount > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="overflow-hidden"
-                >
-                  <div className="pt-5 mt-5 border-t border-gray-100 flex items-center justify-between">
-                    <span className="text-sm text-[var(--midnight-blue)]/50">
-                      {filteredRoles.length} {filteredRoles.length === 1 ? "position" : "positions"} match your
-                      filters
-                    </span>
-                    <button
-                      onClick={clearFilters}
-                      className="flex items-center gap-1.5 text-sm text-[var(--midnight-blue)] hover:underline"
-                      style={{ fontWeight: 600 }}
-                    >
-                      <X className="w-3.5 h-3.5" />
-                      Clear filters
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-
-          <div className="space-y-6">
-            {filteredRoles.length > 0 ? (
-              filteredRoles.map((role) => <RoleCard key={role.slug} role={role} />)
-            ) : (
-              <div className="text-center bg-white border border-gray-100 rounded-2xl p-10">
-                <p className="text-[var(--midnight-blue)]/55">
-                  No open positions match those filters right now — try clearing a filter, or submit general
-                  interest below.
-                </p>
-              </div>
-            )}
+            <p
+              className="text-lg md:text-xl text-[var(--midnight-blue)] max-w-2xl mx-auto"
+              style={{ lineHeight: 1.7, fontWeight: 500 }}
+            >
+              We are always looking for self-starters who are looking to make a difference in education. If
+              interested, please feel free to introduce yourself and share your resume by emailing us at{" "}
+              <a
+                href="mailto:info@schedulebeacon.com"
+                className="text-[var(--midnight-blue)] underline decoration-[var(--university-gold)] decoration-2 underline-offset-4 hover:text-[var(--university-gold)] transition-colors"
+                style={{ fontWeight: 700 }}
+              >
+                info@schedulebeacon.com
+              </a>
+              .
+            </p>
           </div>
 
           {/* Don't see a fit nudge */}
@@ -269,11 +91,11 @@ export function Careers() {
             className="mt-10 text-center bg-white border border-gray-100 rounded-2xl p-8"
           >
             <h3 className="text-[var(--midnight-blue)] mb-2" style={{ fontWeight: 700, fontSize: "1.15rem" }}>
-              Don't see the right role?
+              Prefer to apply online?
             </h3>
             <p className="text-[var(--midnight-blue)]/55 text-sm mb-5 max-w-xl mx-auto">
-              We're growing and always open to hearing from talented people who believe in what we're building.
-              Tell us about yourself and we'll keep you in mind for future opportunities.
+              Tell us about yourself through our general interest form and we'll keep you in mind for future
+              opportunities.
             </p>
             <Link
               to="/careers/apply/general-interest"
