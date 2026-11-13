@@ -1,5 +1,4 @@
 import { motion } from "motion/react";
-import { Mail } from "lucide-react";
 import { Link } from "react-router";
 import logoIcon from "../../assets/logo-watermark-hires.png";
 
@@ -61,10 +60,13 @@ export function Careers() {
             </p>
           </motion.div>
 
-          <div className="bg-white border border-gray-100 border-l-4 border-l-[var(--university-gold)] rounded-2xl p-8 md:p-10 text-center shadow-sm">
-            <div className="w-12 h-12 mx-auto mb-5 rounded-xl bg-[var(--university-gold)]/15 flex items-center justify-center">
-              <Mail className="w-6 h-6 text-[var(--midnight-blue)]" />
-            </div>
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="bg-white border border-gray-100 border-t-4 border-t-[var(--university-gold)] rounded-2xl p-8 md:p-12 text-center shadow-sm"
+          >
             <p
               className="text-lg md:text-xl text-[var(--midnight-blue)] max-w-2xl mx-auto"
               style={{ lineHeight: 1.7, fontWeight: 500 }}
@@ -78,32 +80,25 @@ export function Careers() {
               >
                 info@schedulebeacon.com
               </a>
-              .
+              , or by submitting your information through our general interest form.
             </p>
-          </div>
 
-          {/* Don't see a fit nudge */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="mt-10 text-center bg-white border border-gray-100 rounded-2xl p-8"
-          >
-            <h3 className="text-[var(--midnight-blue)] mb-2" style={{ fontWeight: 700, fontSize: "1.15rem" }}>
-              Prefer to apply online?
-            </h3>
-            <p className="text-[var(--midnight-blue)]/55 text-sm mb-5 max-w-xl mx-auto">
-              Tell us about yourself through our general interest form and we'll keep you in mind for future
-              opportunities.
-            </p>
-            <Link
-              to="/careers/apply/general-interest"
-              className="inline-block bg-[var(--midnight-blue)] text-white px-6 py-3 rounded-xl hover:bg-[var(--midnight-blue)]/90 transition-all hover:shadow-md text-sm"
-              style={{ fontWeight: 700 }}
-            >
-              Submit General Interest
-            </Link>
+            <div className="mt-8 pt-8 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-center gap-3">
+              <a
+                href="mailto:info@schedulebeacon.com"
+                className="inline-block border-2 border-[var(--midnight-blue)] text-[var(--midnight-blue)] px-6 py-3 rounded-xl hover:bg-[var(--midnight-blue)] hover:text-white transition-all text-sm"
+                style={{ fontWeight: 700 }}
+              >
+                Email Us
+              </a>
+              <Link
+                to="/careers/apply/general-interest"
+                className="inline-block bg-[var(--midnight-blue)] border-2 border-[var(--midnight-blue)] text-white px-6 py-3 rounded-xl hover:bg-[var(--midnight-blue)]/90 transition-all hover:shadow-md text-sm"
+                style={{ fontWeight: 700 }}
+              >
+                Submit General Interest
+              </Link>
+            </div>
           </motion.div>
         </div>
       </section>
