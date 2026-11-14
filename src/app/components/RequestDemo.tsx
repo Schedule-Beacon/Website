@@ -151,29 +151,29 @@ export function RequestDemo() {
         >
           <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] bg-white rounded-2xl overflow-hidden shadow-2xl shadow-[var(--midnight-blue)]/10 ring-1 ring-black/5">
             {/* Digital twin panel */}
-            <aside className="relative bg-[var(--midnight-blue)] text-white p-10 flex flex-col overflow-hidden">
-              <div className="absolute -bottom-28 -right-28 w-80 h-80 rounded-full bg-[var(--university-gold)] opacity-[0.12] blur-3xl" />
+            <aside className="relative bg-[var(--university-gold)] text-[var(--midnight-blue)] p-10 flex flex-col overflow-hidden">
+              <div className="absolute -bottom-28 -right-28 w-80 h-80 rounded-full bg-white opacity-[0.25] blur-3xl" />
               <div className="relative">
-                <div className="text-[var(--university-gold)] text-[11px] uppercase mb-4" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                <div className="text-[var(--midnight-blue)]/60 text-[11px] uppercase mb-4" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
                   How Your Demo Works
                 </div>
                 <h2 className="text-3xl mb-5" style={{ fontWeight: 800, lineHeight: 1.15 }}>
-                  Your demo is a <span className="text-[var(--university-gold)]">digital twin</span> of your district.
+                  Your demo is a <span className="underline decoration-[var(--midnight-blue)] decoration-[3px] underline-offset-[6px]">digital twin</span> of your district.
                 </h2>
-                <p className="text-white/65" style={{ lineHeight: 1.75 }}>
+                <p className="text-[var(--midnight-blue)]/75" style={{ lineHeight: 1.75 }}>
                   We build the walkthrough around data that resembles your schools, so you see a realistic picture of
                   how Schedule Beacon will actually work for you — not a generic demo.
                 </p>
               </div>
 
               <div className="relative mt-auto pt-12">
-                <div className="border-t border-white/15 pt-6">
-                  <div className="text-white/50 text-sm mb-3">Prefer to reach out directly?</div>
+                <div className="border-t border-[var(--midnight-blue)]/20 pt-6">
+                  <div className="text-[var(--midnight-blue)]/60 text-sm mb-3">Prefer to reach out directly?</div>
                   <div className="flex flex-col gap-1.5">
-                    <a href="mailto:info@schedulebeacon.com" className="text-white hover:text-[var(--university-gold)] transition-colors text-sm" style={{ fontWeight: 700 }}>
+                    <a href="mailto:info@schedulebeacon.com" className="text-[var(--midnight-blue)] hover:underline underline-offset-4 transition-colors text-sm" style={{ fontWeight: 700 }}>
                       info@schedulebeacon.com
                     </a>
-                    <a href="tel:+15184195335" className="text-white hover:text-[var(--university-gold)] transition-colors text-sm" style={{ fontWeight: 700 }}>
+                    <a href="tel:+15184195335" className="text-[var(--midnight-blue)] hover:underline underline-offset-4 transition-colors text-sm" style={{ fontWeight: 700 }}>
                       (518) 419-5335
                     </a>
                   </div>
