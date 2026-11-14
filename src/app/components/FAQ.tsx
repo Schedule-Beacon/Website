@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Plus, ArrowRight } from "lucide-react";
+import { Plus } from "lucide-react";
 import { LightHero } from "./Brand";
 import { Link } from "react-router";
 
@@ -211,49 +211,6 @@ export function FAQ() {
         </div>
       </section>
 
-      {/* ── Still Have Questions CTA ─────────────────────────── */}
-      <section className="py-20 bg-[var(--midnight-blue)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--university-gold)]/8 rounded-full blur-3xl" />
-
-        <div className="max-w-3xl mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl lg:text-4xl text-white mb-4">
-              Still have questions?
-            </h2>
-            <p className="text-white/55 mb-10 max-w-xl mx-auto" style={{ lineHeight: 1.7 }}>
-              Our team is happy to walk you through any details and show you exactly how Schedule Beacon can work for your district.
-            </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                to="/demo"
-                className="inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-7 py-3.5 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all hover:shadow-lg hover:shadow-[var(--university-gold)]/25 hover:-translate-y-0.5"
-                style={{ fontWeight: 700 }}
-              >
-                Request a Demo
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center gap-2 bg-white/10 text-white px-7 py-3.5 rounded-xl border border-white/15 hover:bg-white/15 transition-all"
-                style={{ fontWeight: 600 }}
-              >
-                Contact Us
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }

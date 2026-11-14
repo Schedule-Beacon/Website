@@ -273,42 +273,6 @@ export function About() {
         </div>
       </section>
 
-      {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="py-16 bg-white">
-        <motion.div
-          className="relative max-w-5xl mx-auto px-6"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="relative overflow-hidden bg-[var(--midnight-blue)] border-l-4 border-[var(--university-gold)] px-8 md:px-10 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-            <img
-              src={logoIcon}
-              alt=""
-              aria-hidden="true"
-              className="absolute right-[-30px] top-1/2 -translate-y-1/2 w-44 pointer-events-none select-none"
-              style={{ opacity: 0.07, filter: "brightness(0) invert(1)" }}
-            />
-            <div className="relative">
-              <h2 className="text-2xl md:text-3xl text-white" style={{ fontWeight: 800 }}>
-                Ready to see the <span className="text-[var(--university-gold)]">difference?</span>
-              </h2>
-              <p className="text-white/60 text-sm mt-1.5">
-                See how Schedule Beacon puts student success at the center of every schedule.
-              </p>
-            </div>
-            <Link
-              to="/demo"
-              className="relative shrink-0 inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-6 py-3 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all text-sm"
-              style={{ fontWeight: 700 }}
-            >
-              Request a Demo
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-        </motion.div>
-      </section>
     </div>
   );
 }

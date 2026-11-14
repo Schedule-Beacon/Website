@@ -11,12 +11,12 @@ export function Eyebrow({
 }: {
   children: ReactNode;
   align?: "center" | "left";
-  tone?: "gold" | "navy" | "white";
+  tone?: "gold" | "navy" | "white" | "ink";
   className?: string;
 }) {
   const color =
-    tone === "gold" ? "var(--university-gold)" : tone === "white" ? "rgba(255,255,255,0.7)" : "var(--midnight-blue)";
-  const rule = tone === "navy" ? "var(--university-gold)" : color;
+    tone === "gold" ? "var(--university-gold)" : tone === "white" ? "rgba(255,255,255,0.7)" : "var(--midnight-blue)"; // navy + ink share text color
+  const rule = tone === "navy" ? "var(--university-gold)" : color; // ink = navy text with navy rules
   return (
     <div className={`flex items-center gap-3 mb-5 ${align === "center" ? "justify-center" : ""} ${className}`}>
       <span className="h-px w-10" style={{ background: rule }} />
