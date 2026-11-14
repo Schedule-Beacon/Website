@@ -274,93 +274,40 @@ export function About() {
       </section>
 
       {/* ── CTA ──────────────────────────────────────────────── */}
-      <section className="grid grid-cols-1 lg:grid-cols-2">
-        <div className="relative bg-[var(--midnight-blue)] px-8 md:px-16 py-20 lg:py-24 overflow-hidden">
-          <div
-            className="absolute inset-0 opacity-[0.05]"
-            style={{
-              backgroundImage:
-                "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          />
-          <motion.div
-            className="relative max-w-lg lg:ml-auto"
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <Eyebrow align="left">Next Step</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl text-white mb-6" style={{ lineHeight: 1.1 }}>
-              Ready to see the <span className="text-[var(--university-gold)]">difference?</span>
-            </h2>
-            <p className="text-white/65 text-lg mb-10" style={{ lineHeight: 1.7 }}>
-              See how Schedule Beacon helps districts put student success at the center of every scheduling
-              decision.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                to="/demo"
-                className="inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-8 py-4 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all hover:shadow-lg"
-                style={{ fontWeight: 700 }}
-              >
-                Request a Demo
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center border-2 border-white/30 text-white px-8 py-[14px] rounded-xl hover:border-white transition-all"
-                style={{ fontWeight: 700 }}
-              >
-                Talk to the Founders
-              </Link>
+      <section className="py-16 bg-white">
+        <motion.div
+          className="relative max-w-5xl mx-auto px-6"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="relative overflow-hidden bg-[var(--midnight-blue)] border-l-4 border-[var(--university-gold)] px-8 md:px-10 py-8 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <img
+              src={logoIcon}
+              alt=""
+              aria-hidden="true"
+              className="absolute right-[-30px] top-1/2 -translate-y-1/2 w-44 pointer-events-none select-none"
+              style={{ opacity: 0.07, filter: "brightness(0) invert(1)" }}
+            />
+            <div className="relative">
+              <h2 className="text-2xl md:text-3xl text-white" style={{ fontWeight: 800 }}>
+                Ready to see the <span className="text-[var(--university-gold)]">difference?</span>
+              </h2>
+              <p className="text-white/60 text-sm mt-1.5">
+                See how Schedule Beacon puts student success at the center of every schedule.
+              </p>
             </div>
-          </motion.div>
-        </div>
-
-        <div className="relative bg-[var(--university-gold)] px-8 md:px-16 py-20 lg:py-24 overflow-hidden">
-          <div
-            className="absolute -right-10 -bottom-16 text-[18rem] leading-none text-[var(--midnight-blue)] opacity-[0.06] select-none pointer-events-none"
-            style={{ fontWeight: 900 }}
-            aria-hidden="true"
-          >
-            SB
+            <Link
+              to="/demo"
+              className="relative shrink-0 inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-6 py-3 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all text-sm"
+              style={{ fontWeight: 700 }}
+            >
+              Request a Demo
+              <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <motion.div
-            className="relative max-w-lg"
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-          >
-            <Eyebrow align="left" tone="navy">What Happens Next</Eyebrow>
-            <ol className="space-y-7">
-              {[
-                ["Request a demo", "Tell us a little about your district and its scheduling challenges."],
-                ["We build your digital twin", "Your walkthrough runs on data that resembles your schools, not a generic sample."],
-                ["See it come together", "A focused 60-minute session with the founders behind Schedule Beacon."],
-              ].map(([title, body], i) => (
-                <li key={title} className="flex gap-5">
-                  <span
-                    className="text-3xl text-[var(--midnight-blue)] leading-none w-12 shrink-0"
-                    style={{ fontWeight: 900 }}
-                  >
-                    0{i + 1}
-                  </span>
-                  <div className="border-l-2 border-[var(--midnight-blue)]/25 pl-5">
-                    <div className="text-[var(--midnight-blue)] text-lg mb-1" style={{ fontWeight: 800 }}>
-                      {title}
-                    </div>
-                    <p className="text-[var(--midnight-blue)]/75" style={{ lineHeight: 1.6 }}>
-                      {body}
-                    </p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          </motion.div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );
