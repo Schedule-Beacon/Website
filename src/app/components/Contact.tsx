@@ -1,21 +1,19 @@
 import { motion } from "motion/react";
-import { Mail, Phone, MapPin, Send, Clock, Loader2, AlertCircle } from "lucide-react";
+import { Send, Loader2, AlertCircle } from "lucide-react";
+import { Eyebrow, LightHero } from "./Brand";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import logoIcon from "../../assets/logo-watermark-hires.png";
 import { EMAILJS_CONFIG, isEmailJSConfigured } from "../lib/emailjs";
 import { US_STATES } from "../lib/usStates";
 
 const contactChannels = [
   {
-    icon: Mail,
     title: "Email Us",
     href: "mailto:info@schedulebeacon.com",
     detail: "info@schedulebeacon.com",
     sub: "We respond within 24 hours",
   },
   {
-    icon: Phone,
     title: "Call Us",
     href: "tel:+15184195335",
     detail: "(518) 419-5335",
@@ -85,87 +83,51 @@ export function Contact() {
   return (
     <div>
       {/* ── Page Hero ───────────────────────────────────────── */}
-      <section className="relative pt-20 pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/20">
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--midnight-blue) 1px, transparent 1px), linear-gradient(90deg, var(--midnight-blue) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Brand watermark */}
-        <img
-          src={logoIcon}
-          alt=""
-          aria-hidden="true"
-          className="absolute right-[-40px] top-1/2 -translate-y-1/2 w-[360px] pointer-events-none select-none"
-          style={{ mixBlendMode: "multiply", opacity: 0.06 }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span
-              className="inline-block text-sm bg-[var(--university-gold)]/15 text-[var(--midnight-blue)] px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 600 }}
-            >
-              Contact Us
-            </span>
-            <h1
-              className="text-5xl lg:text-6xl text-[var(--midnight-blue)] mb-6"
-              style={{ lineHeight: 1.1 }}
-            >
-              We'd love to{" "}
-              <span className="text-[var(--university-gold)]">hear from you</span>
-            </h1>
-            <p className="text-xl text-[var(--midnight-blue)]/55">
-              Whether you have a question, want a demo, or just want to chat about scheduling — we're here.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <LightHero
+        eyebrow="Contact Us"
+        title={
+          <>
+            We'd love to <span className="text-[#B8860B]">hear from you</span>
+          </>
+        }
+      >
+        <p className="text-xl text-[var(--midnight-blue)]/65" style={{ lineHeight: 1.7 }}>
+          Whether you have a question, want a demo, or just want to chat about scheduling — we're here.
+        </p>
+      </LightHero>
 
       {/* ── Contact Channels ────────────────────────────────── */}
-      <section className="py-14 bg-white border-b border-gray-100">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-8 sm:gap-0 sm:divide-x sm:divide-gray-150">
-            {contactChannels.map((channel, i) => (
-              <motion.a
-                key={i}
-                href={channel.href}
-                className="group flex items-center gap-4 sm:px-10 first:pl-0 last:pr-0"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
+      <section className="bg-[var(--midnight-blue)]">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
+          {contactChannels.map((channel, i) => (
+            <motion.a
+              key={i}
+              href={channel.href}
+              className={`group block py-12 md:px-12 ${i === 0 ? "md:pl-0 border-b md:border-b-0 md:border-r border-white/10" : "md:pr-0"}`}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <div className="text-[var(--university-gold)] text-xs uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.25em" }}>
+                {channel.title}
+              </div>
+              <div
+                className="text-white text-2xl md:text-3xl group-hover:text-[var(--university-gold)] transition-colors"
+                style={{ fontWeight: 800 }}
               >
-                <div className="w-12 h-12 rounded-full bg-[var(--soft-grey)] flex items-center justify-center shrink-0 group-hover:bg-[var(--university-gold)]/15 transition-colors">
-                  <channel.icon className="w-5 h-5 text-[var(--midnight-blue)]/70 group-hover:text-[var(--midnight-blue)] transition-colors" />
-                </div>
-                <div>
-                  <div className="text-[var(--midnight-blue)]/45 text-xs mb-0.5" style={{ fontWeight: 600, letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                    {channel.title}
-                  </div>
-                  <div
-                    className="text-[var(--midnight-blue)] group-hover:text-[var(--university-gold)] transition-colors underline-offset-4 group-hover:underline"
-                    style={{ fontSize: "1.15rem", fontWeight: 700 }}
-                  >
-                    {channel.detail}
-                  </div>
-                  <div className="text-[var(--midnight-blue)]/45 text-xs mt-0.5">{channel.sub}</div>
-                </div>
-              </motion.a>
-            ))}
-          </div>
+                {channel.detail}
+              </div>
+              <div className="text-white/50 text-sm mt-2">{channel.sub}</div>
+            </motion.a>
+          ))}
         </div>
       </section>
 
       {/* ── Contact Form ────────────────────────────────────── */}
-      <section className="py-24 bg-white">
+      <section
+        className="py-24 bg-[var(--soft-grey)]"
+        style={{ backgroundImage: "radial-gradient(circle, rgba(0,33,71,0.07) 1.2px, transparent 1.2px)", backgroundSize: "22px 22px" }}
+      >
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Sidebar info */}
@@ -177,6 +139,7 @@ export function Contact() {
               transition={{ duration: 0.8 }}
             >
               <div>
+                <Eyebrow align="left" tone="navy">Send a Message</Eyebrow>
                 <h2 className="text-3xl text-[var(--midnight-blue)] mb-4">Get in touch</h2>
                 <p className="text-[var(--midnight-blue)]/55 text-sm" style={{ lineHeight: 1.8 }}>
                   Fill out the form and a member of our team will be in touch within one business day. For urgent
@@ -184,38 +147,25 @@ export function Contact() {
                 </p>
               </div>
 
-              <div className="space-y-5">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[var(--soft-grey)] rounded-xl flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-[var(--midnight-blue)]/60" />
-                  </div>
-                  <div>
-                    <div className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>
-                      Office
-                    </div>
-                    <div className="text-[var(--midnight-blue)]/55 text-sm">
-                      TBD
-                    </div>
-                  </div>
+              <dl className="border-t-2 border-[var(--midnight-blue)] divide-y divide-[var(--midnight-blue)]/10">
+                <div className="py-4 grid grid-cols-[130px_1fr] gap-4">
+                  <dt className="text-[var(--midnight-blue)]/45 text-xs uppercase pt-0.5" style={{ fontWeight: 700, letterSpacing: "0.18em" }}>
+                    Office
+                  </dt>
+                  <dd className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>TBD</dd>
                 </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 bg-[var(--soft-grey)] rounded-xl flex items-center justify-center shrink-0">
-                    <Clock className="w-5 h-5 text-[var(--midnight-blue)]/60" />
-                  </div>
-                  <div>
-                    <div className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>
-                      Business Hours
-                    </div>
-                    <div className="text-[var(--midnight-blue)]/55 text-sm">
-                      Monday – Friday<br />8:00 AM – 6:00 PM EST
-                    </div>
-                  </div>
+                <div className="py-4 grid grid-cols-[130px_1fr] gap-4">
+                  <dt className="text-[var(--midnight-blue)]/45 text-xs uppercase pt-0.5" style={{ fontWeight: 700, letterSpacing: "0.18em" }}>
+                    Hours
+                  </dt>
+                  <dd className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>
+                    Monday – Friday<br />8:00 AM – 6:00 PM EST
+                  </dd>
                 </div>
-              </div>
+              </dl>
 
               {/* FAQ nudge */}
-              <div className="bg-[var(--soft-grey)] rounded-2xl p-6">
+              <div className="bg-[#FFF8E5] border-l-4 border-[var(--university-gold)] p-6">
                 <div className="text-[var(--midnight-blue)] text-sm mb-2" style={{ fontWeight: 600 }}>
                   Looking for quick answers?
                 </div>
@@ -234,7 +184,7 @@ export function Contact() {
 
             {/* Form */}
             <motion.div
-              className="lg:col-span-3"
+              className="lg:col-span-3 bg-white p-8 md:p-10 border-t-4 border-[var(--university-gold)] shadow-lg shadow-[var(--midnight-blue)]/5"
               initial={{ opacity: 0, x: 20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -243,9 +193,7 @@ export function Contact() {
               {submitted ? (
                 <div className="h-full flex items-center justify-center">
                   <div className="text-center py-16">
-                    <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <Send className="w-8 h-8 text-emerald-600" />
-                    </div>
+                    <Eyebrow tone="navy">Received</Eyebrow>
                     <h3 className="text-2xl text-[var(--midnight-blue)] mb-3">Message sent!</h3>
                     <p className="text-[var(--midnight-blue)]/55">
                       Thanks for reaching out. We'll get back to you within one business day.

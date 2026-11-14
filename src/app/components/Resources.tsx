@@ -1,8 +1,7 @@
 import { motion } from "motion/react";
-import { FileText, Video, Download, BookOpen, ExternalLink, Calendar, Clock, ArrowRight, Search, Sparkles } from "lucide-react";
+import { Eyebrow, LightHero } from "./Brand";
 import { Link } from "react-router";
 import { useState } from "react";
-import logoIcon from "../../assets/logo-watermark-hires.png";
 
 const resourceCategories = [
   { label: "All", value: "all" },
@@ -19,66 +18,34 @@ export function Resources() {
   return (
     <div>
       {/* ── Page Hero ───────────────────────────────────────── */}
-      <section className="relative pt-20 pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/20">
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--midnight-blue) 1px, transparent 1px), linear-gradient(90deg, var(--midnight-blue) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Brand watermark */}
-        <img
-          src={logoIcon}
-          alt=""
-          aria-hidden="true"
-          className="absolute right-[-40px] top-1/2 -translate-y-1/2 w-[360px] pointer-events-none select-none"
-          style={{ mixBlendMode: "multiply", opacity: 0.06 }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span
-              className="inline-block text-sm bg-[var(--university-gold)]/15 text-[var(--midnight-blue)] px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 600 }}
-            >
-              Learning Center
-            </span>
-            <h1
-              className="text-5xl lg:text-6xl text-[var(--midnight-blue)] mb-6"
-              style={{ lineHeight: 1.1 }}
-            >
-              Resources &{" "}
-              <span className="text-[var(--university-gold)]">Support</span>
-            </h1>
-            <p className="text-xl text-[var(--midnight-blue)]/55" style={{ lineHeight: 1.7 }}>
-              Guides, videos, case studies, and live webinars to help you get the most out of Schedule Beacon.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <LightHero
+        eyebrow="Learning Center"
+        title={
+          <>
+            Resources &amp; <span className="text-[#B8860B]">Support</span>
+          </>
+        }
+      >
+        <p className="text-xl text-[var(--midnight-blue)]/65" style={{ lineHeight: 1.7 }}>
+          Guides, videos, case studies, and live webinars to help you get the most out of Schedule Beacon.
+        </p>
+      </LightHero>
 
       {/* ── Resource Library ────────────────────────────────── */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           {/* Filter tabs */}
-          <div className="flex flex-wrap gap-2 mb-10 justify-center">
+          <div className="flex flex-wrap gap-x-8 gap-y-2 mb-12 border-b border-[var(--midnight-blue)]/10">
             {resourceCategories.map((cat) => (
               <button
                 key={cat.value}
                 onClick={() => setActiveCategory(cat.value)}
-                className={`px-5 py-2 rounded-xl text-sm transition-all ${
+                className={`pb-3 -mb-px border-b-[3px] text-sm transition-all ${
                   activeCategory === cat.value
-                    ? "bg-[var(--midnight-blue)] text-white shadow-md"
-                    : "bg-[var(--soft-grey)] text-[var(--midnight-blue)]/60 hover:text-[var(--midnight-blue)] hover:bg-[var(--midnight-blue)]/8"
+                    ? "border-[var(--university-gold)] text-[var(--midnight-blue)]"
+                    : "border-transparent text-[var(--midnight-blue)]/50 hover:text-[var(--midnight-blue)]"
                 }`}
-                style={{ fontWeight: 600 }}
+                style={{ fontWeight: activeCategory === cat.value ? 800 : 600 }}
               >
                 {cat.label}
               </button>
@@ -87,18 +54,23 @@ export function Resources() {
 
           {/* Coming soon state */}
           <motion.div
-            className="flex flex-col items-center justify-center py-20 border-2 border-dashed border-gray-200 rounded-2xl text-center"
+            className="relative overflow-hidden bg-[var(--midnight-blue)] px-10 py-16 md:py-20"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-14 h-14 bg-[var(--university-gold)]/15 rounded-2xl flex items-center justify-center mb-5">
-              <BookOpen className="w-7 h-7 text-[var(--midnight-blue)]/40" />
+            <div
+              className="absolute -right-6 -bottom-10 text-[11rem] leading-none text-white/[0.04] select-none pointer-events-none"
+              style={{ fontWeight: 900 }}
+              aria-hidden="true"
+            >
+              SOON
             </div>
-            <h3 className="text-[var(--midnight-blue)] mb-2" style={{ fontSize: "1.15rem" }}>
-              Resources Coming Soon
+            <Eyebrow align="left">In Progress</Eyebrow>
+            <h3 className="relative text-white text-3xl mb-3" style={{ fontWeight: 800 }}>
+              Resources coming soon
             </h3>
-            <p className="text-[var(--midnight-blue)]/45 text-sm max-w-md" style={{ lineHeight: 1.7 }}>
+            <p className="relative text-white/60 max-w-lg" style={{ lineHeight: 1.7 }}>
               We are actively developing guides, video tutorials, case studies, and documentation. Check back here as we build out our resource library.
             </p>
           </motion.div>
@@ -106,7 +78,7 @@ export function Resources() {
       </section>
 
       {/* ── Upcoming Webinars ───────────────────────────────── */}
-      <section className="py-24 bg-[var(--soft-grey)]">
+      <section className="py-24 bg-[#FFF8E5]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -115,12 +87,7 @@ export function Resources() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-white px-4 py-1.5 rounded-full mb-4"
-              style={{ fontWeight: 600 }}
-            >
-              LIVE EVENTS
-            </span>
+            <Eyebrow tone="navy">Live Events</Eyebrow>
             <h2 className="text-4xl text-[var(--midnight-blue)] mb-4">Upcoming Webinars</h2>
             <p className="text-[var(--midnight-blue)]/55 max-w-2xl mx-auto">
               Join live sessions to deepen your scheduling expertise and discover new platform features.
@@ -129,19 +96,16 @@ export function Resources() {
 
           {/* Coming soon state */}
           <motion.div
-            className="flex flex-col items-center justify-center py-16 border-2 border-dashed border-[var(--midnight-blue)]/15 rounded-2xl text-center max-w-2xl mx-auto bg-white"
+            className="max-w-2xl mx-auto bg-white border-t-4 border-[var(--university-gold)] shadow-sm px-10 py-12 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-14 h-14 bg-[var(--midnight-blue)]/8 rounded-2xl flex items-center justify-center mb-5">
-              <Calendar className="w-7 h-7 text-[var(--midnight-blue)]/35" />
-            </div>
-            <h3 className="text-[var(--midnight-blue)] mb-2" style={{ fontSize: "1.15rem" }}>
-              Webinars Coming Soon
+            <h3 className="text-[var(--midnight-blue)] text-2xl mb-3" style={{ fontWeight: 800 }}>
+              Webinars coming soon
             </h3>
-            <p className="text-[var(--midnight-blue)]/45 text-sm max-w-sm" style={{ lineHeight: 1.7 }}>
+            <p className="text-[var(--midnight-blue)]/60 max-w-md mx-auto" style={{ lineHeight: 1.7 }}>
               We are planning live sessions covering scheduling best practices, platform walkthroughs, and more. Dates will be announced here.
             </p>
           </motion.div>

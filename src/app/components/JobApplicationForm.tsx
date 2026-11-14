@@ -90,9 +90,7 @@ export function JobApplicationForm({ position, confirmationNote }: JobApplicatio
         transition={{ duration: 0.5 }}
         className="text-center py-16"
       >
-        <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-          <Send className="w-8 h-8 text-emerald-600" />
-        </div>
+        <div className="h-1 w-12 bg-[var(--university-gold)] mx-auto mb-6" />
         <h3 className="text-2xl text-[var(--midnight-blue)] mb-3">Application received!</h3>
         <p className="text-[var(--midnight-blue)]/55 max-w-md mx-auto">
           {confirmationNote ?? "Thanks for applying. We'll review your application and be in touch soon."}

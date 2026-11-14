@@ -2,7 +2,7 @@ import { motion } from "motion/react";
 import { ArrowRight, ChevronDown } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router";
-import logoIcon from "../../assets/logo-watermark-hires.png";
+import { NavyHero } from "./Brand";
 import {
   openRoles,
   DEPARTMENTS,
@@ -103,46 +103,20 @@ export function Careers() {
   return (
     <div>
       {/* ── Page Hero ───────────────────────────────────────── */}
-      <section className="relative pt-24 pb-44 overflow-hidden bg-[var(--midnight-blue)]">
-        <div
-          className="absolute inset-0 opacity-[0.06]"
-          style={{
-            backgroundImage:
-              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[400px] rounded-full bg-[var(--university-gold)] opacity-[0.12] blur-3xl" />
-        <img
-          src={logoIcon}
-          alt=""
-          aria-hidden="true"
-          className="absolute right-[-40px] top-1/2 -translate-y-1/2 w-[380px] pointer-events-none select-none"
-          style={{ opacity: 0.07, filter: "brightness(0) invert(1)" }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <span className="h-px w-10 bg-[var(--university-gold)]" />
-              <span
-                className="text-xs text-[var(--university-gold)] uppercase"
-                style={{ fontWeight: 700, letterSpacing: "0.25em" }}
-              >
-                Careers
-              </span>
-              <span className="h-px w-10 bg-[var(--university-gold)]" />
-            </div>
-            <h1 className="text-5xl lg:text-6xl text-white mb-6" style={{ lineHeight: 1.1 }}>
-              Help us build the <span className="text-[var(--university-gold)]">future of scheduling</span>
-            </h1>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
-              We're a small team on a mission to put student success at the center of every schedule. If that
-              excites you, we want to hear from you — whether or not there's an open role that fits today.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <NavyHero
+        eyebrow="Careers"
+        bottomPadding="pb-44"
+        title={
+          <>
+            Help us build the <span className="text-[var(--university-gold)]">future of scheduling</span>
+          </>
+        }
+      >
+        <p className="text-xl text-white/70 max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
+          We're a small team on a mission to put student success at the center of every schedule. If that excites
+          you, we want to hear from you — whether or not there's an open role that fits today.
+        </p>
+      </NavyHero>
 
       {/* ── Open Positions panel ────────────────────────────── */}
       <section className="relative bg-[var(--soft-grey)] pb-24">

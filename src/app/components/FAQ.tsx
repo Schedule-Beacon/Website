@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronDown, HelpCircle, ArrowRight } from "lucide-react";
+import { Plus, ArrowRight } from "lucide-react";
+import { LightHero } from "./Brand";
 import { Link } from "react-router";
-import logoIcon from "figma:asset/5671362e46764389b665ff1fad478cea5f46eaa8.png";
 
 const faqCategories = [
   { label: "All", value: "all" },
@@ -105,31 +105,33 @@ const faqs = [
   },
 ];
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
+function FAQItem({ question, answer, index }: { question: string; answer: string; index: number }) {
   const [open, setOpen] = useState(false);
 
   return (
     <motion.div
-      className="border border-gray-100 rounded-2xl overflow-hidden bg-white hover:border-[var(--midnight-blue)]/20 transition-colors duration-200"
+      className={`border-b border-[var(--midnight-blue)]/10 transition-colors ${open ? "bg-[#FFF8E5]/60" : ""}`}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
     >
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between gap-4 px-7 py-5 text-left"
-      >
-        <span className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600, lineHeight: 1.5 }}>
+      <button onClick={() => setOpen(!open)} className="group w-full flex items-start gap-5 py-6 pr-2 text-left">
+        <span
+          className={`text-sm w-8 shrink-0 pt-0.5 transition-colors ${open ? "text-[#B8860B]" : "text-[var(--midnight-blue)]/30"}`}
+          style={{ fontWeight: 800 }}
+        >
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <span
+          className="flex-1 text-[var(--midnight-blue)] group-hover:text-[var(--midnight-blue)]/80"
+          style={{ fontWeight: 700, lineHeight: 1.5, fontSize: "1.05rem" }}
+        >
           {question}
         </span>
-        <motion.div
-          animate={{ rotate: open ? 180 : 0 }}
-          transition={{ duration: 0.25 }}
-          className="shrink-0 w-7 h-7 rounded-full bg-[var(--soft-grey)] flex items-center justify-center"
-        >
-          <ChevronDown className="w-4 h-4 text-[var(--midnight-blue)]/60" />
-        </motion.div>
+        <motion.span animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.25 }} className="shrink-0 pt-0.5">
+          <Plus className={`w-5 h-5 ${open ? "text-[var(--midnight-blue)]" : "text-[var(--midnight-blue)]/40"}`} />
+        </motion.span>
       </button>
 
       <AnimatePresence initial={false}>
@@ -139,12 +141,11 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.28, ease: "easeInOut" }}
+            className="overflow-hidden"
           >
-            <div className="px-7 pb-6 border-t border-gray-100">
-              <p className="text-[var(--midnight-blue)]/65 text-sm pt-4" style={{ lineHeight: 1.75 }}>
-                {answer}
-              </p>
-            </div>
+            <p className="pl-[3.25rem] pr-10 pb-7 text-[var(--midnight-blue)]/70" style={{ lineHeight: 1.8 }}>
+              {answer}
+            </p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -161,81 +162,56 @@ export function FAQ() {
   return (
     <div>
       {/* ── Hero ─────────────────────────────────────────────── */}
-      <section className="relative pt-20 pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/20">
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--midnight-blue) 1px, transparent 1px), linear-gradient(90deg, var(--midnight-blue) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-br from-[var(--university-gold)]/8 to-blue-100/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3" />
-
-        {/* Watermark icon */}
-        <img
-          src={logoIcon}
-          alt=""
-          aria-hidden="true"
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/4 w-[420px] pointer-events-none select-none"
-          style={{ opacity: 0.06 }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="inline-flex items-center gap-2 bg-[var(--university-gold)]/15 text-[var(--midnight-blue)] px-4 py-1.5 rounded-full mb-6">
-              <HelpCircle className="w-4 h-4 text-[var(--university-gold)]" />
-              <span className="text-sm" style={{ fontWeight: 600 }}>FAQ</span>
-            </div>
-            <h1 className="text-5xl text-[var(--midnight-blue)] mb-5" style={{ lineHeight: 1.1 }}>
-              Frequently Asked <br />
-              <span className="text-[var(--university-gold)]">Questions</span>
-            </h1>
-            <p className="text-lg text-[var(--midnight-blue)]/55 max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
-              Everything you need to know about Schedule Beacon. Can't find the answer you're looking for?{" "}
-              <Link to="/contact" className="text-[var(--midnight-blue)] underline underline-offset-2 hover:text-[var(--university-gold)] transition-colors" style={{ fontWeight: 600 }}>
-                Reach out to our team.
-              </Link>
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <LightHero
+        eyebrow="FAQ"
+        title={
+          <>
+            Frequently asked <span className="text-[#B8860B]">questions</span>
+          </>
+        }
+      >
+        <p className="text-lg text-[var(--midnight-blue)]/65" style={{ lineHeight: 1.7 }}>
+          Everything you need to know about Schedule Beacon. Can't find the answer you're looking for?{" "}
+          <Link to="/contact" className="text-[var(--midnight-blue)] underline decoration-[var(--university-gold)] decoration-2 underline-offset-4 hover:text-[#B8860B] transition-colors" style={{ fontWeight: 700 }}>
+            Reach out to our team.
+          </Link>
+        </p>
+      </LightHero>
 
       {/* ── FAQ Body ─────────────────────────────────────────── */}
-      <section className="py-20 bg-[var(--soft-grey)]">
-        <div className="max-w-3xl mx-auto px-6">
-
-          {/* Category Filter */}
-          <motion.div
-            className="flex flex-wrap gap-2 mb-10 justify-center"
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.15 }}
-          >
-            {faqCategories.map((cat) => (
-              <button
-                key={cat.value}
-                onClick={() => setActiveCategory(cat.value)}
-                className={`px-5 py-2 rounded-full text-sm transition-all duration-200 ${
-                  activeCategory === cat.value
-                    ? "bg-[var(--midnight-blue)] text-white shadow-md"
-                    : "bg-white text-[var(--midnight-blue)]/60 hover:text-[var(--midnight-blue)] border border-gray-200 hover:border-[var(--midnight-blue)]/20"
-                }`}
-                style={{ fontWeight: activeCategory === cat.value ? 600 : 500 }}
-              >
-                {cat.label}
-              </button>
-            ))}
-          </motion.div>
+      <section className="py-20 bg-white">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-[220px_1fr] gap-10 lg:gap-16">
+          {/* Category nav */}
+          <nav className="lg:sticky lg:top-28 self-start flex lg:flex-col gap-1 overflow-x-auto">
+            <div
+              className="hidden lg:block text-xs text-[var(--midnight-blue)]/40 uppercase mb-3"
+              style={{ fontWeight: 700, letterSpacing: "0.2em" }}
+            >
+              Topics
+            </div>
+            {faqCategories.map((cat) => {
+              const active = activeCategory === cat.value;
+              return (
+                <button
+                  key={cat.value}
+                  onClick={() => setActiveCategory(cat.value)}
+                  className={`text-left whitespace-nowrap px-4 py-2.5 border-b-2 lg:border-b-0 lg:border-l-4 transition-all ${
+                    active
+                      ? "border-[var(--university-gold)] text-[var(--midnight-blue)] bg-[#FFF8E5]"
+                      : "border-transparent text-[var(--midnight-blue)]/50 hover:text-[var(--midnight-blue)] hover:border-[var(--midnight-blue)]/15"
+                  }`}
+                  style={{ fontWeight: active ? 800 : 600 }}
+                >
+                  {cat.label}
+                </button>
+              );
+            })}
+          </nav>
 
           {/* FAQ List */}
-          <div className="space-y-3">
+          <div className="border-t-2 border-[var(--midnight-blue)]">
             {filtered.map((faq, i) => (
-              <FAQItem key={`${activeCategory}-${i}`} question={faq.question} answer={faq.answer} />
+              <FAQItem key={`${activeCategory}-${i}`} index={i} question={faq.question} answer={faq.answer} />
             ))}
           </div>
         </div>

@@ -1,24 +1,21 @@
 import { motion } from "motion/react";
-import { Calendar, CheckCircle, Send, Star, Clock, Users, Zap, ArrowRight, MessageSquare, Loader2, AlertCircle, Sparkles } from "lucide-react";
+import { ArrowRight, Loader2, AlertCircle } from "lucide-react";
+import { Eyebrow, NavyHero } from "./Brand";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
-import logoIcon from "../../assets/logo-watermark-hires.png";
 import { EMAILJS_CONFIG, isEmailJSConfigured } from "../lib/emailjs";
 import { US_STATES } from "../lib/usStates";
 
 const demoPerks = [
   {
-    icon: Clock,
     title: "60-Minute Session",
     description: "A focused walkthrough of Schedule Beacon's key features.",
   },
   {
-    icon: Zap,
     title: "Built for Your District's Needs",
     description: "We take your district's unique circumstances and scheduling challenges into account throughout every conversation.",
   },
   {
-    icon: Users,
     title: "Direct Founder Access",
     description: "Speak directly with the team behind Schedule Beacon.",
   },
@@ -97,61 +94,35 @@ export function RequestDemo() {
   return (
     <div>
       {/* ── Page Hero ───────────────────────────────────────── */}
-      <section className="relative pt-16 pb-12 overflow-hidden bg-[var(--midnight-blue)]">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--university-gold)] rounded-full blur-3xl" />
-        </div>
-
-        {/* Brand watermark */}
-        <img
-          src={logoIcon}
-          alt=""
-          aria-hidden="true"
-          className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-[300px] pointer-events-none select-none"
-          style={{ mixBlendMode: "screen", opacity: 0.16 }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
-          >
-            <span
-              className="inline-block text-sm bg-[var(--university-gold)]/20 text-[var(--university-gold)] px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 600 }}
-            >
-              Free · No Commitment
-            </span>
-            <h1
-              className="text-5xl lg:text-6xl text-white mb-6"
-              style={{ lineHeight: 1.1 }}
-            >
-              See Schedule Beacon
-              <br />
-              <span className="text-[var(--university-gold)]">in action</span>
-            </h1>
-            <p className="text-xl text-white/60" style={{ lineHeight: 1.7 }}>
-              Schedule a personalized 60-minute demo with a scheduling expert — tailored to your district's needs.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <NavyHero
+        eyebrow="Free · No Commitment"
+        bottomPadding="pb-20"
+        title={
+          <>
+            See Schedule Beacon
+            <br />
+            <span className="text-[var(--university-gold)]">in action</span>
+          </>
+        }
+      >
+        <p className="text-xl text-white/70" style={{ lineHeight: 1.7 }}>
+          Schedule a personalized 60-minute demo with a scheduling expert — tailored to your district's needs.
+        </p>
+      </NavyHero>
 
       {/* ── Digital Twin Callout ────────────────────────────── */}
-      <section className="py-6 bg-[var(--university-gold)]/8 border-b border-[var(--university-gold)]/20">
-        <div className="max-w-4xl mx-auto px-6">
+      <section className="bg-[var(--university-gold)]">
+        <div className="max-w-5xl mx-auto px-6 py-8">
           <motion.div
-            className="flex items-start sm:items-center gap-4"
+            className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 md:gap-10 items-center"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="w-10 h-10 bg-[var(--university-gold)]/20 rounded-xl flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5 text-[var(--midnight-blue)]" />
+            <div className="text-[var(--midnight-blue)] text-xl md:border-r-2 md:border-[var(--midnight-blue)]/20 md:pr-10" style={{ fontWeight: 800, lineHeight: 1.25 }}>
+              Your demo is a<br className="hidden md:block" /> digital twin of your district.
             </div>
-            <p className="text-sm text-[var(--midnight-blue)]/75" style={{ lineHeight: 1.6 }}>
-              <span style={{ fontWeight: 700 }}>Your demo is a digital twin of your district.</span>{" "}
+            <p className="text-[var(--midnight-blue)]/80" style={{ lineHeight: 1.65 }}>
               We build the walkthrough around data that resembles your schools, so you see a realistic picture of how Schedule Beacon will actually work for you — not a generic demo.
             </p>
           </motion.div>
@@ -159,7 +130,7 @@ export function RequestDemo() {
       </section>
 
       {/* ── What to Expect ──────────────────────────────────── */}
-      <section className="py-12 bg-white border-b border-gray-100">
+      <section className="py-14 bg-white border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {demoPerks.map((perk, i) => (
@@ -170,9 +141,9 @@ export function RequestDemo() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <div className="w-10 h-10 bg-[var(--university-gold)]/15 rounded-xl flex items-center justify-center shrink-0">
-                  <perk.icon className="w-5 h-5 text-[var(--midnight-blue)]" />
-                </div>
+                <span className="text-[var(--university-gold)] text-3xl leading-none shrink-0" style={{ fontWeight: 900, WebkitTextStroke: "1px #B8860B" }}>
+                  0{i + 1}
+                </span>
                 <div>
                   <div className="text-[var(--midnight-blue)] text-sm mb-1" style={{ fontWeight: 700 }}>
                     {perk.title}
@@ -186,7 +157,10 @@ export function RequestDemo() {
       </section>
 
       {/* ── Main Content ────────────────────────────────────── */}
-      <section className="py-16 bg-[var(--soft-grey)]">
+      <section
+        className="py-16 bg-[var(--soft-grey)]"
+        style={{ backgroundImage: "radial-gradient(circle, rgba(0,33,71,0.07) 1.2px, transparent 1.2px)", backgroundSize: "22px 22px" }}
+      >
         <div className="max-w-3xl mx-auto px-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -195,10 +169,8 @@ export function RequestDemo() {
             transition={{ duration: 0.8 }}
           >
             {submitted ? (
-              <div className="bg-white rounded-2xl p-12 border border-gray-100 text-center">
-                <div className="w-16 h-16 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <CheckCircle className="w-8 h-8 text-emerald-600" />
-                </div>
+              <div className="bg-white p-12 border-t-4 border-[var(--university-gold)] shadow-sm text-center">
+                <Eyebrow tone="navy">Request Received</Eyebrow>
                 <h3 className="text-2xl text-[var(--midnight-blue)] mb-3">You're on the list!</h3>
                 <p className="text-[var(--midnight-blue)]/55 mb-6">
                   A scheduling expert will reach out within one business day to confirm your demo time.
@@ -212,7 +184,7 @@ export function RequestDemo() {
                 </div>
               </div>
             ) : (
-              <div className="bg-white rounded-2xl p-8 md:p-10 border border-gray-100 shadow-sm">
+              <div className="bg-white p-8 md:p-10 border-t-4 border-[var(--university-gold)] shadow-lg shadow-[var(--midnight-blue)]/5">
                 <h2 className="text-2xl text-[var(--midnight-blue)] mb-1">
                   Tell us about your district
                 </h2>

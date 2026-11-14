@@ -1,30 +1,8 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import {
-  Users,
-  BarChart3,
-  CheckCircle,
-  ArrowRight,
-  Zap,
-  Star,
-  Play,
-  Shield,
-  RefreshCw,
-  TrendingUp as _TrendingUp,
-  ChevronRight,
-  ChevronLeft,
-  XCircle,
-  Clock,
-  AlertTriangle,
-  HeartHandshake,
-  Lightbulb,
-  GraduationCap,
-  MessageSquare,
-  Database,
-  SlidersHorizontal,
-  Rocket,
-} from "lucide-react";
+import { ArrowRight, ChevronRight, ChevronLeft } from "lucide-react";
+import { Eyebrow } from "./Brand";
 import logoIcon from "figma:asset/5671362e46764389b665ff1fad478cea5f46eaa8.png";
 import lighthouseImage from "figma:asset/a6b99a5a06add249a1b0b121e419659629d67ecb.png";
 import heroVideoMp4 from "../../imports/hero-demo.mp4";
@@ -79,11 +57,8 @@ function HeroVisual() {
         initial={{ opacity: 0, x: -14 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 1.0 }}
-        className="absolute bottom-0 left-3 z-20 bg-white rounded-xl shadow-xl p-3 border border-gray-100 flex items-center gap-2.5"
+        className="absolute bottom-0 left-3 z-20 bg-white shadow-xl px-4 py-3 border-l-4 border-emerald-500"
       >
-        <div className="w-9 h-9 bg-emerald-50 rounded-lg flex items-center justify-center shrink-0">
-          <CheckCircle className="w-4 h-4 text-emerald-500" />
-        </div>
         <div>
           <div className="text-[11px] font-bold text-[var(--midnight-blue)] leading-tight">Help you achieve higher</div>
           <div className="text-[11px] font-bold text-emerald-500 leading-tight">fulfillment rates</div>
@@ -95,11 +70,8 @@ function HeroVisual() {
         initial={{ opacity: 0, x: 14 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, delay: 1.2 }}
-        className="absolute top-0 right-3 z-20 bg-[var(--midnight-blue)] rounded-xl shadow-xl p-3 flex items-center gap-2.5"
+        className="absolute top-0 right-3 z-20 bg-[var(--midnight-blue)] shadow-xl px-4 py-3 border-l-4 border-[var(--university-gold)]"
       >
-        <div className="w-9 h-9 bg-[var(--university-gold)]/15 rounded-lg flex items-center justify-center shrink-0">
-          <Zap className="w-4 h-4 text-[var(--university-gold)]" />
-        </div>
         <div>
           <div className="text-[11px] font-bold text-white leading-tight">Scheduling in a</div>
           <div className="text-[11px] font-bold text-[var(--university-gold)] leading-tight">Fraction of the Time</div>
@@ -111,25 +83,19 @@ function HeroVisual() {
 
 const features = [
   {
-    icon: Zap,
     title: "Automated Scheduling Engine",
     description:
       "An intelligent algorithm that ingests school-specific data to generate high-performance master schedules, maximizing resources and balancing class loads across your district.",
-    color: "bg-blue-50 text-blue-600",
   },
   {
-    icon: RefreshCw,
     title: "Constraint Optimization",
     description:
       "A flexible configuration tool that lets each district customize their scheduling logic, accommodating faculty certifications, room capacity limits, and other unique district needs.",
-    color: "bg-amber-50 text-amber-600",
   },
   {
-    icon: AlertTriangle,
     title: "Conflict Identification & Resolution",
     description:
       "Schedule Beacon surfaces scheduling conflicts through clear, intuitive visualizations — making it easy for administrators to understand what's causing an issue and act on intelligent resolution recommendations before they impact students.",
-    color: "bg-rose-50 text-rose-600",
   },
 ];
 
@@ -153,30 +119,24 @@ const steps = [
 
 const problems = [
   {
-    icon: Clock,
     text: "Scheduling consumes weeks, sometimes months, of staff time every single year, pulling administrators away from what matters most.",
   },
   {
-    icon: AlertTriangle,
     text: "Spreadsheets and legacy tools can't handle the complexity of constraints, conflicts, and student needs at scale.",
   },
   {
-    icon: XCircle,
     text: "Without the right process, students miss courses they need and inequities go undetected until it's too late to fix.",
   },
 ];
 
 const solutions = [
   {
-    icon: HeartHandshake,
     text: "Schedule Beacon eliminates the scheduling headache, giving counselors and administrators their time back to focus on students, not spreadsheets.",
   },
   {
-    icon: Lightbulb,
     text: "Purpose-built technology handles the complexity for you, optimizing across hundreds of variables automatically.",
   },
   {
-    icon: GraduationCap,
     text: "When schedules are built on the right technology, students get into the right classes. Better schedules lead directly to brighter futures.",
   },
 ];
@@ -228,23 +188,18 @@ function FeatureCarousel() {
                   }`}
                   style={{ height: 500 }}
                 >
-                  {/* Faded number watermark */}
-                  <div
-                    className="absolute right-6 top-4 text-[6rem] font-black text-[var(--midnight-blue)] leading-none select-none pointer-events-none"
-                    style={{ opacity: 0.04 }}
-                  >
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-
                   {/* Subtle gold sweep on active */}
                   {isCenter && (
                     <div className="absolute inset-0 bg-gradient-to-br from-[var(--university-gold)]/5 to-transparent rounded-2xl pointer-events-none" />
                   )}
 
                   <div className="relative z-10 h-full flex flex-col">
-                    {/* Icon */}
-                    <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 ${feature.color}`}>
-                      <feature.icon className="w-6 h-6" />
+                    {/* Number + rule */}
+                    <div className="flex items-center gap-4 mb-6">
+                      <span className="text-[var(--university-gold)] text-5xl leading-none" style={{ fontWeight: 900, WebkitTextStroke: "1px #B8860B" }}>
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="h-0.5 flex-1 bg-[var(--midnight-blue)]/10" />
                     </div>
 
                     {/* Title */}
@@ -271,7 +226,7 @@ function FeatureCarousel() {
       <div className="flex items-center justify-center gap-5 mt-6">
         <button
           onClick={goPrev}
-          className="w-10 h-10 rounded-full border border-gray-200 bg-white shadow-sm flex items-center justify-center text-[var(--midnight-blue)]/50 hover:text-[var(--midnight-blue)] hover:border-[var(--midnight-blue)]/25 hover:shadow-md transition-all"
+          className="w-11 h-11 border-2 border-[var(--midnight-blue)]/15 bg-white flex items-center justify-center text-[var(--midnight-blue)]/60 hover:text-white hover:bg-[var(--midnight-blue)] hover:border-[var(--midnight-blue)] transition-all"
           aria-label="Previous"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -283,10 +238,10 @@ function FeatureCarousel() {
             <button
               key={i}
               onClick={() => setActive(i)}
-              className={`rounded-full transition-all duration-300 ${
+              className={`h-1 transition-all duration-300 ${
                 i === active
-                  ? "w-6 h-2.5 bg-[var(--midnight-blue)]"
-                  : "w-2.5 h-2.5 bg-gray-300 hover:bg-gray-400"
+                  ? "w-10 bg-[var(--university-gold)]"
+                  : "w-6 bg-gray-300 hover:bg-gray-400"
               }`}
               aria-label={`Go to feature ${i + 1}`}
             />
@@ -295,7 +250,7 @@ function FeatureCarousel() {
 
         <button
           onClick={goNext}
-          className="w-10 h-10 rounded-full border border-gray-200 bg-white shadow-sm flex items-center justify-center text-[var(--midnight-blue)]/50 hover:text-[var(--midnight-blue)] hover:border-[var(--midnight-blue)]/25 hover:shadow-md transition-all"
+          className="w-11 h-11 border-2 border-[var(--midnight-blue)]/15 bg-white flex items-center justify-center text-[var(--midnight-blue)]/60 hover:text-white hover:bg-[var(--midnight-blue)] hover:border-[var(--midnight-blue)] transition-all"
           aria-label="Next"
         >
           <ChevronRight className="w-5 h-5" />
@@ -377,7 +332,6 @@ export function Home() {
                   className="inline-flex items-center gap-2 bg-white text-[var(--midnight-blue)] px-7 py-3.5 rounded-xl border border-[var(--midnight-blue)]/15 hover:border-[var(--midnight-blue)]/30 transition-all hover:shadow-sm"
                   style={{ fontWeight: 600 }}
                 >
-                  <Play className="w-4 h-4 text-[var(--midnight-blue)]/60" />
                   See How It Works
                 </Link>
               </div>
@@ -417,9 +371,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <p className="text-[var(--university-gold)] text-sm mb-3" style={{ fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
-              The Challenge &amp; The Solution
-            </p>
+            <Eyebrow>The Challenge &amp; The Solution</Eyebrow>
             <h2 className="text-3xl lg:text-4xl text-white" style={{ lineHeight: 1.2 }}>
               Master scheduling is one of the most complex,<br className="hidden lg:block" />
               time-consuming tasks in education.{" "}
@@ -427,20 +379,17 @@ export function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
             {/* Problem Card */}
             <motion.div
-              className="rounded-2xl p-8 border border-red-500/20 bg-red-500/5 backdrop-blur-sm"
+              className="p-8 lg:p-10 border border-white/10 bg-white/[0.03]"
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-9 h-9 rounded-xl bg-red-500/20 flex items-center justify-center">
-                  <XCircle className="w-5 h-5 text-red-400" />
-                </div>
-                <span className="text-red-400 text-sm" style={{ fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              <div className="mb-7 pb-5 border-b border-white/10">
+                <span className="text-white/50 text-xs" style={{ fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase" }}>
                   The Problem
                 </span>
               </div>
@@ -454,9 +403,9 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                   >
-                    <div className="w-9 h-9 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <item.icon className="text-red-400" style={{ width: "1.1rem", height: "1.1rem" }} />
-                    </div>
+                    <span className="text-white/30 text-2xl leading-none w-10 shrink-0" style={{ fontWeight: 900 }}>
+                      0{i + 1}
+                    </span>
                     <p className="text-white/80 text-base" style={{ lineHeight: 1.65 }}>
                       {item.text}
                     </p>
@@ -467,17 +416,14 @@ export function Home() {
 
             {/* Solution Card */}
             <motion.div
-              className="rounded-2xl p-8 border border-emerald-500/25 bg-emerald-500/8 backdrop-blur-sm"
+              className="p-8 lg:p-10 bg-[var(--university-gold)]"
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="flex items-center gap-3 mb-7">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center">
-                  <CheckCircle className="w-5 h-5 text-emerald-400" />
-                </div>
-                <span className="text-emerald-400 text-sm" style={{ fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              <div className="mb-7 pb-5 border-b border-[var(--midnight-blue)]/15">
+                <span className="text-[var(--midnight-blue)]/60 text-xs" style={{ fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase" }}>
                   The Solution
                 </span>
               </div>
@@ -491,10 +437,10 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                   >
-                    <div className="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0 mt-0.5">
-                      <item.icon className="text-emerald-400" style={{ width: "1.1rem", height: "1.1rem" }} />
-                    </div>
-                    <p className="text-white/80 text-base" style={{ lineHeight: 1.65 }}>
+                    <span className="text-[var(--midnight-blue)] text-2xl leading-none w-10 shrink-0" style={{ fontWeight: 900 }}>
+                      0{i + 1}
+                    </span>
+                    <p className="text-[var(--midnight-blue)] text-base" style={{ lineHeight: 1.65, fontWeight: 500 }}>
                       {item.text}
                     </p>
                   </motion.div>
@@ -518,9 +464,7 @@ export function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.7 }}
             >
-              <span className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-white px-4 py-1.5 rounded-full mb-8" style={{ fontWeight: 600 }}>
-                OUR STORY
-              </span>
+              <Eyebrow align="left" tone="navy">Our Story</Eyebrow>
 
               <div className="text-[var(--university-gold)] mb-3" style={{ fontSize: "3.5rem", lineHeight: 1, fontFamily: "Georgia, serif", opacity: 0.4 }}>
                 "
@@ -538,18 +482,13 @@ export function Home() {
                 </p>
               </div>
 
-              <div className="flex items-center gap-4">
-                <div className="flex -space-x-2">
-                  <div className="w-10 h-10 rounded-full bg-[var(--midnight-blue)] text-white text-sm flex items-center justify-center ring-2 ring-white" style={{ fontWeight: 700 }}>
-                    R
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-[var(--university-gold)] text-[var(--midnight-blue)] text-sm flex items-center justify-center ring-2 ring-white" style={{ fontWeight: 700 }}>
-                    C
-                  </div>
-                </div>
+              <div className="flex items-center gap-4 pt-6 border-t border-[var(--midnight-blue)]/10">
+                <span className="h-px w-8 bg-[var(--university-gold)]" />
                 <div>
-                  <div className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>Robby &amp; Chris</div>
-                  <div className="text-[var(--midnight-blue)]/45 text-xs">Co-Founders, Schedule Beacon</div>
+                  <div className="text-[var(--midnight-blue)]" style={{ fontWeight: 800 }}>Robby &amp; Chris</div>
+                  <div className="text-[var(--midnight-blue)]/50 text-xs uppercase mt-0.5" style={{ fontWeight: 700, letterSpacing: "0.18em" }}>
+                    Co-Founders, Schedule Beacon
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -590,9 +529,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-[var(--soft-grey)] px-4 py-1.5 rounded-full mb-4" style={{ fontWeight: 600 }}>
-              CORE FEATURES
-            </span>
+            <Eyebrow tone="navy">Core Features</Eyebrow>
             <h2 className="text-4xl text-[var(--midnight-blue)] mb-4">
               The technology behind <br />
               <span className="text-[var(--university-gold)]">every great schedule</span>
@@ -634,12 +571,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-sm text-[var(--university-gold)] bg-[var(--university-gold)]/10 border border-[var(--university-gold)]/25 px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}
-            >
-              How It Works
-            </span>
+            <Eyebrow>How It Works</Eyebrow>
             <h2
               className="text-4xl lg:text-5xl text-white mb-5"
               style={{ lineHeight: 1.15 }}
@@ -655,26 +587,22 @@ export function Home() {
           {/* Step Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
             {/* Dashed connector line (desktop) */}
-            <div className="hidden md:block absolute top-[3.25rem] left-[calc(33.33%-1rem)] right-[calc(33.33%-1rem)] h-px border-t-2 border-dashed border-[var(--university-gold)]/20 z-0" />
 
             {[
               {
                 number: "01",
-                icon: Database,
                 title: "Import Your Data",
                 description:
                   "Connect your SIS and Schedule Beacon automatically pulls in students, courses, teachers, and room data.",
               },
               {
                 number: "02",
-                icon: SlidersHorizontal,
                 title: "Configure & Optimize",
                 description:
                   "Set your constraints and priorities. Our engine builds the optimal schedule and flags any trade-offs for your review.",
               },
               {
                 number: "03",
-                icon: Rocket,
                 title: "Publish to Your SIS",
                 description:
                   "Publish your finalized schedule directly to your SIS, so it lands exactly where students, parents, and faculty need to see it.",
@@ -688,26 +616,11 @@ export function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.65, delay: i * 0.18 }}
               >
-                <div className="relative rounded-2xl p-8 border border-white/10 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-[var(--university-gold)]/40 transition-all duration-300 h-full overflow-hidden">
-                  {/* Giant watermark number */}
-                  <div
-                    className="absolute -bottom-4 -right-2 text-white/[0.04] select-none pointer-events-none"
-                    style={{ fontSize: "9rem", fontWeight: 900, lineHeight: 1 }}
-                  >
+                <div className="relative p-8 border-t-2 border-[var(--university-gold)] bg-white/[0.04] hover:bg-white/[0.08] transition-all duration-300 h-full overflow-hidden">
+
+                  {/* Big gold step number */}
+                  <div className="relative z-10 text-[var(--university-gold)] mb-5 leading-none" style={{ fontSize: "3.5rem", fontWeight: 900 }}>
                     {step.number}
-                  </div>
-
-                  {/* Gold icon circle */}
-                  <div className="relative z-10 w-14 h-14 rounded-2xl bg-[var(--university-gold)] flex items-center justify-center mb-7 shadow-lg shadow-[var(--university-gold)]/25 group-hover:scale-110 transition-transform duration-300">
-                    <step.icon className="w-6 h-6 text-[var(--midnight-blue)]" />
-                  </div>
-
-                  {/* Step label */}
-                  <div
-                    className="text-[var(--university-gold)]/60 text-xs mb-3 relative z-10"
-                    style={{ fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase" }}
-                  >
-                    Step {step.number}
                   </div>
 
                   <h3
@@ -724,12 +637,6 @@ export function Home() {
                   <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-[var(--university-gold)]/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
 
-                {/* Arrow connector bubble between cards */}
-                {i < 2 && (
-                  <div className="hidden md:flex absolute top-[3rem] -right-4 z-20 w-8 h-8 rounded-full bg-[var(--midnight-blue)] border-2 border-[var(--university-gold)]/40 items-center justify-center">
-                    <ChevronRight className="w-4 h-4 text-[var(--university-gold)]" style={{ strokeWidth: 2.5 }} />
-                  </div>
-                )}
               </motion.div>
             ))}
           </div>
@@ -755,7 +662,7 @@ export function Home() {
       </section>
 
       {/* ── Testimonials ─────────────────────────────────────── */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-[#FFF8E5]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center mb-12"
@@ -764,9 +671,7 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-[var(--soft-grey)] px-4 py-1.5 rounded-full mb-4" style={{ fontWeight: 600 }}>
-              TESTIMONIALS
-            </span>
+            <Eyebrow tone="navy">Testimonials</Eyebrow>
             <h2 className="text-4xl text-[var(--midnight-blue)]">
               Loved by scheduling teams <br />across the country
             </h2>
@@ -774,26 +679,23 @@ export function Home() {
 
           {/* Placeholder */}
           <motion.div
-            className="max-w-2xl mx-auto bg-white rounded-2xl p-10 border border-gray-100 shadow-sm text-center"
+            className="relative max-w-2xl mx-auto bg-white p-10 md:p-12 border-l-4 border-[var(--university-gold)] shadow-sm"
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex justify-center mb-4">
-              <div className="w-12 h-12 rounded-xl bg-[var(--soft-grey)] flex items-center justify-center">
-                <MessageSquare className="w-5 h-5 text-[var(--midnight-blue)]/30" />
-              </div>
+            <div
+              className="absolute top-2 right-6 text-[var(--university-gold)] select-none pointer-events-none"
+              style={{ fontSize: "7rem", lineHeight: 1, fontFamily: "Georgia, serif", opacity: 0.35 }}
+              aria-hidden="true"
+            >
+              &rdquo;
             </div>
-            <div className="flex justify-center gap-1 mb-4">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="w-5 h-5 text-gray-200 fill-gray-200" />
-              ))}
-            </div>
-            <p className="text-[var(--midnight-blue)]/40 text-sm mb-1" style={{ fontWeight: 500 }}>
-              District testimonials coming soon
+            <p className="relative text-2xl text-[var(--midnight-blue)] mb-3" style={{ fontWeight: 700, lineHeight: 1.35 }}>
+              District testimonials coming soon.
             </p>
-            <p className="text-[var(--midnight-blue)]/25 text-xs">
+            <p className="relative text-[var(--midnight-blue)]/55">
               We're just getting started. Check back here as we grow.
             </p>
           </motion.div>

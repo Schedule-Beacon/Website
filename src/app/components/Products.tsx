@@ -1,155 +1,98 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Link } from "react-router";
-import {
-  Users,
-  Settings,
-  CheckCircle,
-  ArrowRight,
-  Zap,
-  Shield,
-  RefreshCw,
-  TrendingUp,
-  Clock,
-  ChevronDown,
-  Lock,
-  Server,
-  KeyRound,
-  FileCheck,
-  Search,
-  Wrench,
-  GraduationCap,
-  Rocket,
-  Timer,
-  UserCheck,
-  CalendarClock,
-  MessageSquare,
-  ClipboardList,
-  FlaskConical,
-} from "lucide-react";
-import logoIcon from "figma:asset/5671362e46764389b665ff1fad478cea5f46eaa8.png";
+import { ArrowRight, ChevronDown } from "lucide-react";
+import { Eyebrow, NavyHero } from "./Brand";
 
 const securityPillars = [
   {
-    icon: FileCheck,
     title: "FERPA",
     description:
       "Schedule Beacon is built around FERPA requirements from the ground up, ensuring student education records are handled with the protections federal law requires.",
-    color: "bg-blue-50 text-blue-600",
   },
   {
-    icon: Server,
     title: "Modern, Secure Infrastructure",
     description:
       "The platform runs on reputable cloud infrastructure providers, with environments configured around the principle of least privilege and continuous monitoring.",
-    color: "bg-amber-50 text-amber-600",
   },
   {
-    icon: Lock,
     title: "Encryption in Transit and at Rest",
     description:
       "Student and district data is encrypted both in transit and at rest, ensuring information stays protected whether it is moving through our systems or stored within them.",
-    color: "bg-emerald-50 text-emerald-600",
   },
   {
-    icon: KeyRound,
     title: "Access Controls",
     description:
       "Role-based access controls and authentication safeguards ensure only authorized district staff can view or modify scheduling data.",
-    color: "bg-rose-50 text-rose-600",
   },
   {
-    icon: FileCheck,
     title: "NY Education Law §2-d",
     description:
       "Schedule Beacon's data practices align with New York Education Law §2-d, supporting districts in meeting their obligations under state student privacy law.",
-    color: "bg-indigo-50 text-indigo-600",
   },
   {
-    icon: FileCheck,
     title: "WISP (MA 201 CMR 17.00)",
     description:
       "Schedule Beacon maintains a Written Information Security Program in accordance with Massachusetts 201 CMR 17.00, establishing documented policies and procedures for protecting personal information of Massachusetts residents.",
-    color: "bg-violet-50 text-violet-600",
   },
 ];
 
 const implementationPillars = [
   {
-    icon: Search,
     title: "Discovery",
     description:
       "We begin by meeting with your district to understand your scheduling structure, constraints, staffing model, and goals before any configuration begins.",
-    color: "bg-blue-50 text-blue-600",
   },
   {
-    icon: Wrench,
     title: "Build",
     description:
       "Your dedicated scheduling expert configures the platform around your district's specific needs, course catalog, and requirements.",
-    color: "bg-amber-50 text-amber-600",
   },
   {
-    icon: GraduationCap,
     title: "Training",
     description:
       "We conduct in-person training with your scheduling staff to ensure your team is fully prepared to use the platform with confidence.",
-    color: "bg-emerald-50 text-emerald-600",
   },
   {
-    icon: Rocket,
     title: "Go-Live",
     description:
       "The platform is live and ready for your district to begin building your master schedule.",
-    color: "bg-purple-50 text-purple-600",
   },
 ];
 
 const supportPillars = [
   {
-    icon: Timer,
     title: "One Business Day Response",
     description:
       "All support requests receive a response within one business day, so your team is never left waiting on a critical issue.",
-    color: "bg-blue-50 text-blue-600",
   },
   {
-    icon: UserCheck,
     title: "Always a Human",
     description:
       "Every support interaction connects you with a real scheduling expert. No chatbots, no automated ticket queues.",
-    color: "bg-emerald-50 text-emerald-600",
   },
   {
-    icon: CalendarClock,
     title: "Scheduling Season Coverage",
     description:
       "We provide increased support availability during peak scheduling periods, when your team needs it most.",
-    color: "bg-amber-50 text-amber-600",
   },
 ];
 
 const updatesPillars = [
   {
-    icon: MessageSquare,
     title: "Client Feedback",
     description:
       "All clients are encouraged to share feedback on an ongoing basis. We actively solicit input and treat it as a core part of how the platform evolves.",
-    color: "bg-blue-50 text-blue-600",
   },
   {
-    icon: ClipboardList,
     title: "Regular Surveys",
     description:
       "We distribute structured surveys to gather district input and use those responses to inform our development priorities.",
-    color: "bg-amber-50 text-amber-600",
   },
   {
-    icon: FlaskConical,
     title: "Feature Testing",
     description:
       "New features are tested with districts before broad release, giving clients early access and ensuring changes are validated in real scheduling environments.",
-    color: "bg-emerald-50 text-emerald-600",
   },
 ];
 
@@ -181,7 +124,7 @@ function PlatformAccordion({ feature, index }: { feature: typeof platformFeature
   const intro = accordionIntro[feature.title] ?? "";
   return (
     <motion.div
-      className="rounded-2xl border overflow-hidden transition-colors duration-200"
+      className="border overflow-hidden transition-colors duration-200 bg-white"
       style={{ borderColor: open ? "var(--midnight-blue)" : "rgb(243 244 246)" }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -195,12 +138,12 @@ function PlatformAccordion({ feature, index }: { feature: typeof platformFeature
       >
         {/* Left accent bar */}
         <div
-          className="w-1 self-stretch rounded-full shrink-0 transition-colors duration-200"
+          className="w-1 self-stretch shrink-0 transition-colors duration-200"
           style={{ background: open ? "var(--university-gold)" : "rgb(229 231 235)", minHeight: "2.5rem" }}
         />
-        <div className="w-10 h-10 bg-[var(--university-gold)]/15 rounded-xl flex items-center justify-center shrink-0">
-          <feature.icon className="w-5 h-5 text-[var(--midnight-blue)]" />
-        </div>
+        <span className="text-[var(--midnight-blue)]/30 text-xl w-8 shrink-0" style={{ fontWeight: 900 }}>
+          0{index + 1}
+        </span>
         <div className="flex-1 min-w-0">
           <div className="text-[var(--midnight-blue)]" style={{ fontSize: "1rem", fontWeight: 600 }}>
             {feature.title}
@@ -211,15 +154,10 @@ function PlatformAccordion({ feature, index }: { feature: typeof platformFeature
             </div>
           )}
         </div>
-        <div
-          className="w-7 h-7 rounded-full flex items-center justify-center shrink-0 transition-colors duration-200"
-          style={{ background: open ? "var(--midnight-blue)" : "rgb(243 244 246)" }}
-        >
-          <ChevronDown
-            className="w-4 h-4 transition-transform duration-300"
-            style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: open ? "var(--university-gold)" : "rgb(156 163 175)" }}
-          />
-        </div>
+        <ChevronDown
+          className="w-5 h-5 shrink-0 transition-transform duration-300"
+          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: open ? "var(--midnight-blue)" : "rgb(156 163 175)" }}
+        />
       </button>
       <AnimatePresence initial={false}>
         {open && (
@@ -244,12 +182,9 @@ function PlatformAccordion({ feature, index }: { feature: typeof platformFeature
                   return (
                     <div
                       key={i}
-                      className="p-5 rounded-xl border border-gray-100 bg-gray-50/50"
+                      className="p-5 border-l-2 border-[var(--university-gold)] bg-[var(--soft-grey)]/60"
                       style={isLastOdd ? { gridColumn: "1 / -1", maxWidth: "calc(50% - 8px)", margin: "0 auto", width: "100%" } : {}}
                     >
-                      <div className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 ${pillar.color}`}>
-                        <pillar.icon className="w-4 h-4" />
-                      </div>
                       <h4 className="text-[var(--midnight-blue)] mb-1.5 text-sm" style={{ fontWeight: 700 }}>
                         {pillar.title}
                       </h4>
@@ -276,39 +211,29 @@ function PlatformAccordion({ feature, index }: { feature: typeof platformFeature
 
 const coreFeatures = [
   {
-    icon: Zap,
     title: "Automated Scheduling Engine",
     description:
       "An intelligent algorithm that ingests school-specific data to generate high-performance master schedules, maximizing resources and balancing class loads across your district.",
-    color: "bg-blue-50 text-blue-600",
   },
   {
-    icon: RefreshCw,
     title: "Constraint Optimization",
     description:
       "A flexible configuration tool that lets each district customize their scheduling logic, accommodating faculty certifications, room capacity limits, and other unique district requirements.",
-    color: "bg-amber-50 text-amber-600",
   },
   {
-    icon: Users,
     title: "FTE Optimization",
     description:
       "Ensure every full-time staff member is utilized to their full capability. Schedule Beacon identifies gaps and inefficiencies before they become costly, saving districts thousands of dollars in staff hours each year.",
-    color: "bg-purple-50 text-purple-600",
   },
   {
-    icon: CheckCircle,
     title: "Conflict Viewing and Resolution",
     description:
       "A dedicated conflict management workspace that surfaces scheduling conflicts clearly and provides structured tools for resolution, allowing administrators to address issues with precision and confidence.",
-    color: "bg-emerald-50 text-emerald-600",
   },
   {
-    icon: Settings,
     title: "Simple UI",
     description:
       "Purpose-built screens designed around how scheduling coordinators actually work. Each view surfaces the right information at the right time, reducing training overhead and minimizing the risk of user error.",
-    color: "bg-indigo-50 text-indigo-600",
   },
 ];
 
@@ -318,80 +243,48 @@ const benefits = [
 ];
 
 const platformFeatures = [
-  { icon: Shield, title: "Security and Compliance" },
-  { icon: Users, title: "Dedicated Implementation Team" },
-  { icon: Clock, title: "Ongoing Support" },
-  { icon: TrendingUp, title: "Regular Platform Updates" },
+  { title: "Security and Compliance" },
+  { title: "Dedicated Implementation Team" },
+  { title: "Ongoing Support" },
+  { title: "Regular Platform Updates" },
 ];
 
 export function Products() {
   return (
     <div>
       {/* ── Page Hero ───────────────────────────────────────── */}
-      <section className="relative pt-20 pb-24 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50/20">
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(var(--midnight-blue) 1px, transparent 1px), linear-gradient(90deg, var(--midnight-blue) 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-
-        {/* Brand watermark — centered behind heading */}
-        <img
-          src={logoIcon}
-          alt=""
-          aria-hidden="true"
-          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[360px] pointer-events-none select-none"
-          style={{ mixBlendMode: "multiply", opacity: 0.06 }}
-        />
-
-        <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7 }}
+      <NavyHero
+        eyebrow="The Platform"
+        title={
+          <>
+            Master Scheduling, <span className="text-[var(--university-gold)]">Reimagined</span>
+          </>
+        }
+      >
+        <p className="text-lg text-white/70 mb-9 max-w-xl mx-auto" style={{ lineHeight: 1.7 }}>
+          Purpose-built for K-12 school districts. Build master schedules in days, while ensuring every student gets the courses they need.
+        </p>
+        <div className="flex flex-wrap justify-center gap-3">
+          <Link
+            to="/demo"
+            className="inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-7 py-3.5 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all hover:shadow-lg"
+            style={{ fontWeight: 700 }}
           >
-            <span
-              className="inline-block text-sm bg-[var(--university-gold)]/15 text-[var(--midnight-blue)] px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 600 }}
-            >
-              The Platform
-            </span>
-            <h1
-              className="text-5xl lg:text-6xl text-[var(--midnight-blue)] mb-6"
-              style={{ lineHeight: 1.1 }}
-            >
-              Master Scheduling,{" "}
-              <span className="text-[var(--university-gold)]">Reimagined</span>
-            </h1>
-            <p className="text-lg text-[var(--midnight-blue)]/55 mb-8 max-w-xl mx-auto" style={{ lineHeight: 1.7 }}>
-              Purpose-built for K-12 school districts. Build master schedules in days, while ensuring every student gets the courses they need.
-            </p>
-            <div className="flex flex-wrap justify-center gap-3">
-              <Link
-                to="/demo"
-                className="inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-7 py-3.5 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all hover:shadow-lg"
-                style={{ fontWeight: 700 }}
-              >
-                Request a Demo
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              <Link
-                to="/resources"
-                className="inline-flex items-center gap-2 border border-[var(--midnight-blue)]/20 text-[var(--midnight-blue)] px-7 py-3.5 rounded-xl hover:border-[var(--midnight-blue)]/40 hover:bg-gray-50 transition-all"
-                style={{ fontWeight: 600 }}
-              >
-                View Resources
-              </Link>
-            </div>
-          </motion.div>
+            Request a Demo
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <Link
+            to="/resources"
+            className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-7 py-3 rounded-xl hover:border-white transition-all"
+            style={{ fontWeight: 600 }}
+          >
+            View Resources
+          </Link>
         </div>
-      </section>
+      </NavyHero>
 
       {/* ── Core Features ───────────────────────────────────── */}
-      <section id="features" className="py-28 bg-white">
+      <section id="features" className="py-28 bg-[var(--soft-grey)]">
         <div className="max-w-7xl mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -400,12 +293,7 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-[var(--soft-grey)] px-4 py-1.5 rounded-full mb-4"
-              style={{ fontWeight: 600 }}
-            >
-              CORE FEATURES
-            </span>
+            <Eyebrow tone="navy">Core Features</Eyebrow>
             <h2 className="text-4xl text-[var(--midnight-blue)] mb-3">
               Everything districts need
             </h2>
@@ -424,14 +312,14 @@ export function Products() {
             {coreFeatures.slice(0, 3).map((feature, i) => (
               <motion.div
                 key={i}
-                className="p-7 rounded-2xl border border-gray-100 hover:border-[var(--midnight-blue)]/20 hover:shadow-lg transition-all bg-white"
+                className="p-7 border-t-2 border-[var(--midnight-blue)] hover:border-[var(--university-gold)] hover:shadow-lg transition-all bg-white shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${feature.color}`}>
-                  <feature.icon className="w-5 h-5" />
+                <div className="text-[var(--university-gold)] text-3xl leading-none mb-5" style={{ fontWeight: 900, WebkitTextStroke: "1px #B8860B" }}>
+                  {String(coreFeatures.indexOf(feature) + 1).padStart(2, "0")}
                 </div>
                 <h3 className="text-[var(--midnight-blue)] mb-2.5" style={{ fontSize: "1rem", fontWeight: 700 }}>
                   {feature.title}
@@ -446,14 +334,14 @@ export function Products() {
             {coreFeatures.slice(3).map((feature, i) => (
               <motion.div
                 key={i}
-                className="p-7 rounded-2xl border border-gray-100 hover:border-[var(--midnight-blue)]/20 hover:shadow-lg transition-all bg-white"
+                className="p-7 border-t-2 border-[var(--midnight-blue)] hover:border-[var(--university-gold)] hover:shadow-lg transition-all bg-white shadow-sm"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: (i + 3) * 0.08 }}
               >
-                <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-5 ${feature.color}`}>
-                  <feature.icon className="w-5 h-5" />
+                <div className="text-[var(--university-gold)] text-3xl leading-none mb-5" style={{ fontWeight: 900, WebkitTextStroke: "1px #B8860B" }}>
+                  {String(coreFeatures.indexOf(feature) + 1).padStart(2, "0")}
                 </div>
                 <h3 className="text-[var(--midnight-blue)] mb-2.5" style={{ fontSize: "1rem", fontWeight: 700 }}>
                   {feature.title}
@@ -481,12 +369,7 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-sm text-[var(--university-gold)]/70 bg-[var(--university-gold)]/10 px-4 py-1.5 rounded-full mb-6"
-              style={{ fontWeight: 600 }}
-            >
-              THE DIFFERENCE
-            </span>
+            <Eyebrow>The Difference</Eyebrow>
             <h2 className="text-4xl text-white">
               Real results for real districts
             </h2>
@@ -503,7 +386,7 @@ export function Products() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: (ci * 3 + i) * 0.08 }}
                   >
-                    <CheckCircle className="w-5 h-5 text-[var(--university-gold)] shrink-0 mt-1" />
+                    <span className="h-0.5 w-6 bg-[var(--university-gold)] shrink-0 mt-[0.9rem]" />
                     <span className="text-white/80 text-xl" style={{ lineHeight: 1.5 }}>{benefit}</span>
                   </motion.div>
                 ))}
@@ -514,7 +397,7 @@ export function Products() {
       </section>
 
       {/* ── Platform Features ───────────────────────────────── */}
-      <section id="platform" className="py-24 bg-white">
+      <section id="platform" className="py-24 bg-[#FFF8E5]">
         <div className="max-w-4xl mx-auto px-6">
           <motion.div
             className="text-center mb-16"
@@ -523,12 +406,7 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span
-              className="inline-block text-sm text-[var(--midnight-blue)]/50 bg-[var(--soft-grey)] px-4 py-1.5 rounded-full mb-4"
-              style={{ fontWeight: 600 }}
-            >
-              ENTERPRISE PLATFORM
-            </span>
+            <Eyebrow tone="navy">Enterprise Platform</Eyebrow>
             <h2 className="text-4xl text-[var(--midnight-blue)]">
               Built for how districts actually work
             </h2>
@@ -543,10 +421,10 @@ export function Products() {
       </section>
 
       {/* ── Pricing ──────────────────────────────────────────── */}
-      <section id="pricing" className="py-24 bg-white">
+      <section id="pricing" className="py-24 bg-[#FFF8E5] pt-0">
         <div className="max-w-5xl mx-auto px-6">
           <motion.div
-            className="rounded-2xl bg-[var(--midnight-blue)] px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6"
+            className="bg-[var(--midnight-blue)] border-l-4 border-[var(--university-gold)] px-10 py-10 flex flex-col md:flex-row items-center justify-between gap-6"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
