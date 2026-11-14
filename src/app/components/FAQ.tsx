@@ -104,7 +104,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 
   return (
     <motion.div
-      className={`border-b border-[var(--midnight-blue)]/10 transition-colors duration-200 ${open ? "bg-[#FFF3CC]/70" : "hover:bg-[var(--midnight-blue)]/[0.05]"}`}
+      className={`border-b border-[var(--midnight-blue)]/10 transition-colors duration-200 ${open ? "bg-[#FFF3CC]/70" : "hover:bg-[#E2E8F1]"}`}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
