@@ -2,7 +2,6 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { Eyebrow, NavyHero } from "./Brand";
-import masterSchedule from "../../assets/master-schedule-screenshot.png";
 
 const securityPillars = [
   {
@@ -244,61 +243,68 @@ export function Products() {
 
       {/* ── Benefits ─────────────────────────────────────────── */}
       <section id="difference" className="py-24 bg-[var(--midnight-blue)] relative overflow-hidden">
-        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[var(--university-gold)] opacity-[0.07] blur-3xl" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
-          {/* Left: statement + product shot */}
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-[var(--university-gold)] opacity-[0.07] blur-3xl" />
+        <div className="max-w-5xl mx-auto px-6 relative z-10">
           <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            className="text-center mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
+            transition={{ duration: 0.6 }}
           >
-            <Eyebrow align="left">The Difference</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl text-white mb-6" style={{ lineHeight: 1.1 }}>
+            <Eyebrow>The Difference</Eyebrow>
+            <h2 className="text-4xl lg:text-5xl text-white mb-5" style={{ lineHeight: 1.1 }}>
               Real results for <span className="text-[var(--university-gold)]">real districts</span>
             </h2>
-            <p className="text-white/60 text-lg mb-10 max-w-xl" style={{ lineHeight: 1.7 }}>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
               Better schedules show up everywhere: in the classes students get, the time staff win back, and how
               clearly leaders can see what's happening across the district.
             </p>
-            <div className="relative">
-              <div className="absolute -inset-3 bg-[var(--university-gold)]/20 blur-2xl rounded-3xl" />
-              <img
-                src={masterSchedule}
-                alt="Schedule Beacon master schedule view"
-                className="relative w-full rounded-xl shadow-2xl shadow-black/40 ring-1 ring-white/10"
-              />
-            </div>
           </motion.div>
 
-          {/* Right: flowing list */}
-          <ol className="space-y-9">
-            {benefits.map((b, i) => (
-              <motion.li
-                key={b.title}
-                className="flex gap-6"
-                initial={{ opacity: 0, y: 14 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.07 }}
-              >
-                <span
-                  className="text-[var(--university-gold)] text-3xl leading-none w-12 shrink-0"
-                  style={{ fontWeight: 900 }}
+          <div className="space-y-4">
+            {benefits.map((b, i) => {
+              const right = i % 2 === 1;
+              return (
+                <motion.div
+                  key={b.title}
+                  className={`group md:w-[78%] ${right ? "md:ml-auto" : ""}`}
+                  initial={{ opacity: 0, x: right ? 40 : -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.55, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="text-white text-xl mb-1.5" style={{ fontWeight: 800, lineHeight: 1.25 }}>
-                    {b.title}
-                  </h3>
-                  <p className="text-white/55" style={{ lineHeight: 1.65 }}>
-                    {b.body}
-                  </p>
-                </div>
-              </motion.li>
-            ))}
-          </ol>
+                  <div
+                    className={`flex items-stretch bg-white rounded-xl overflow-hidden shadow-lg shadow-black/20 group-hover:-translate-y-0.5 group-hover:shadow-xl transition-all duration-300 ${
+                      right ? "md:flex-row-reverse" : ""
+                    }`}
+                  >
+                    <div className="bg-[var(--university-gold)] w-16 md:w-20 shrink-0 flex items-center justify-center">
+                      <span className="text-[var(--midnight-blue)] text-2xl" style={{ fontWeight: 900 }}>
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <div className={`px-6 py-4 flex-1 ${right ? "md:text-right" : ""}`}>
+                      <h3 className="text-[var(--midnight-blue)] text-lg" style={{ fontWeight: 800, lineHeight: 1.3 }}>
+                        {b.title}
+                      </h3>
+                      <p className="text-[var(--midnight-blue)]/60 text-sm mt-0.5" style={{ lineHeight: 1.6 }}>
+                        {b.body}
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -316,38 +322,38 @@ export function Products() {
             <h2 className="text-4xl text-[var(--midnight-blue)]">Built for how districts actually work</h2>
           </motion.div>
 
-          {/* Security & Compliance — navy feature block */}
+          {/* Security & Compliance */}
           <motion.div
-            className="relative bg-[var(--midnight-blue)] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-[340px_1fr]"
+            className="bg-white rounded-2xl p-10 shadow-sm ring-1 ring-black/5"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="p-10 border-b lg:border-b-0 lg:border-r border-white/10">
-              <div className="text-[var(--university-gold)] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
-                01 · Security &amp; Compliance
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 lg:gap-12 items-end mb-10">
+              <div>
+                <div className="text-[#B8860B] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                  01 · Security &amp; Compliance
+                </div>
+                <h3 className="text-[var(--midnight-blue)] text-2xl" style={{ fontWeight: 800 }}>Protecting every student record</h3>
               </div>
-              <h3 className="text-white text-2xl mb-4" style={{ fontWeight: 800, lineHeight: 1.2 }}>
-                Protecting every student record.
-              </h3>
-              <p className="text-white/60 text-sm mb-4" style={{ lineHeight: 1.75 }}>
+              <p className="text-[var(--midnight-blue)]/60 text-sm" style={{ lineHeight: 1.75 }}>
                 In a FERPA-regulated environment, security is a foundation. Here is how we approach it.
               </p>
-              <p className="text-white/45 text-xs" style={{ lineHeight: 1.75 }}>
-                Security and compliance are an ongoing responsibility that evolves alongside our platform and the
-                regulatory landscape. We're glad to walk any district's IT or compliance team through our
-                infrastructure, data handling, and privacy practices in detail.
-              </p>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
               {securityPillars.map((p) => (
-                <div key={p.title} className="p-7 bg-[var(--midnight-blue)]">
-                  <div className="text-white mb-2" style={{ fontWeight: 700 }}>{p.title}</div>
-                  <p className="text-white/50 text-[13px]" style={{ lineHeight: 1.65 }}>{p.description}</p>
+                <div key={p.title} className="border-t-2 border-[var(--university-gold)] pt-4">
+                  <div className="text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 800 }}>{p.title}</div>
+                  <p className="text-[var(--midnight-blue)]/60 text-[13px]" style={{ lineHeight: 1.65 }}>{p.description}</p>
                 </div>
               ))}
             </div>
+            <p className="mt-10 pt-6 border-t border-[var(--midnight-blue)]/10 text-[var(--midnight-blue)]/55 text-sm" style={{ lineHeight: 1.75 }}>
+              Security and compliance are an ongoing responsibility that evolves alongside our platform and the
+              regulatory landscape. We're glad to walk any district's IT or compliance team through our
+              infrastructure, data handling, and privacy practices in detail.
+            </p>
           </motion.div>
 
           {/* Implementation — timeline */}
