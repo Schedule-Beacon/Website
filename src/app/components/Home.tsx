@@ -1,7 +1,18 @@
 import React from "react";
 import { motion } from "motion/react";
 import { Link } from "react-router";
-import { ArrowRight, ChevronRight, ChevronLeft } from "lucide-react";
+import {
+  ArrowRight,
+  ChevronRight,
+  ChevronLeft,
+  CheckCircle,
+  XCircle,
+  Clock,
+  AlertTriangle,
+  HeartHandshake,
+  Lightbulb,
+  GraduationCap,
+} from "lucide-react";
 import { Eyebrow } from "./Brand";
 import logoIcon from "figma:asset/5671362e46764389b665ff1fad478cea5f46eaa8.png";
 import lighthouseImage from "figma:asset/a6b99a5a06add249a1b0b121e419659629d67ecb.png";
@@ -119,24 +130,30 @@ const steps = [
 
 const problems = [
   {
+    icon: Clock,
     text: "Scheduling consumes weeks, sometimes months, of staff time every single year, pulling administrators away from what matters most.",
   },
   {
+    icon: AlertTriangle,
     text: "Spreadsheets and legacy tools can't handle the complexity of constraints, conflicts, and student needs at scale.",
   },
   {
+    icon: XCircle,
     text: "Without the right process, students miss courses they need and inequities go undetected until it's too late to fix.",
   },
 ];
 
 const solutions = [
   {
+    icon: HeartHandshake,
     text: "Schedule Beacon eliminates the scheduling headache, giving counselors and administrators their time back to focus on students, not spreadsheets.",
   },
   {
+    icon: Lightbulb,
     text: "Purpose-built technology handles the complexity for you, optimizing across hundreds of variables automatically.",
   },
   {
+    icon: GraduationCap,
     text: "When schedules are built on the right technology, students get into the right classes. Better schedules lead directly to brighter futures.",
   },
 ];
@@ -371,7 +388,9 @@ export function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Eyebrow>The Challenge &amp; The Solution</Eyebrow>
+            <p className="text-[var(--university-gold)] text-sm mb-3" style={{ fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              The Challenge &amp; The Solution
+            </p>
             <h2 className="text-3xl lg:text-4xl text-white" style={{ lineHeight: 1.2 }}>
               Master scheduling is one of the most complex,<br className="hidden lg:block" />
               time-consuming tasks in education.{" "}
@@ -379,17 +398,20 @@ export function Home() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
             {/* Problem Card */}
             <motion.div
-              className="p-8 lg:p-10 border border-white/10 bg-white/[0.03]"
+              className="rounded-2xl p-8 border border-red-500/20 bg-red-500/5 backdrop-blur-sm"
               initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <div className="mb-7 pb-5 border-b border-white/10">
-                <span className="text-white/50 text-xs" style={{ fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase" }}>
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-9 h-9 rounded-xl bg-red-500/20 flex items-center justify-center">
+                  <XCircle className="w-5 h-5 text-red-400" />
+                </div>
+                <span className="text-red-400 text-sm" style={{ fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
                   The Problem
                 </span>
               </div>
@@ -403,9 +425,9 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
                   >
-                    <span className="text-white/30 text-2xl leading-none w-10 shrink-0" style={{ fontWeight: 900 }}>
-                      0{i + 1}
-                    </span>
+                    <div className="w-9 h-9 rounded-lg bg-red-500/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <item.icon className="text-red-400" style={{ width: "1.1rem", height: "1.1rem" }} />
+                    </div>
                     <p className="text-white/80 text-base" style={{ lineHeight: 1.65 }}>
                       {item.text}
                     </p>
@@ -416,14 +438,17 @@ export function Home() {
 
             {/* Solution Card */}
             <motion.div
-              className="p-8 lg:p-10 bg-[var(--university-gold)]"
+              className="rounded-2xl p-8 border border-emerald-500/25 bg-emerald-500/8 backdrop-blur-sm"
               initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <div className="mb-7 pb-5 border-b border-[var(--midnight-blue)]/15">
-                <span className="text-[var(--midnight-blue)]/60 text-xs" style={{ fontWeight: 700, letterSpacing: "0.25em", textTransform: "uppercase" }}>
+              <div className="flex items-center gap-3 mb-7">
+                <div className="w-9 h-9 rounded-xl bg-emerald-500/20 flex items-center justify-center">
+                  <CheckCircle className="w-5 h-5 text-emerald-400" />
+                </div>
+                <span className="text-emerald-400 text-sm" style={{ fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase" }}>
                   The Solution
                 </span>
               </div>
@@ -437,10 +462,10 @@ export function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
                   >
-                    <span className="text-[var(--midnight-blue)] text-2xl leading-none w-10 shrink-0" style={{ fontWeight: 900 }}>
-                      0{i + 1}
-                    </span>
-                    <p className="text-[var(--midnight-blue)] text-base" style={{ lineHeight: 1.65, fontWeight: 500 }}>
+                    <div className="w-9 h-9 rounded-lg bg-emerald-500/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <item.icon className="text-emerald-400" style={{ width: "1.1rem", height: "1.1rem" }} />
+                    </div>
+                    <p className="text-white/80 text-base" style={{ lineHeight: 1.65 }}>
                       {item.text}
                     </p>
                   </motion.div>
