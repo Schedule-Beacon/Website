@@ -295,7 +295,8 @@ export function Products() {
       </section>
 
       {/* ── Benefits ─────────────────────────────────────────── */}
-      <section id="difference" className="py-24 bg-[var(--university-gold)] relative overflow-hidden">
+      <section id="difference" className="py-24 bg-[#FFF8E5] relative overflow-hidden">
+        <div className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full bg-[var(--university-gold)] opacity-[0.18] blur-3xl" />
         <div
           className="absolute inset-0 opacity-[0.07]"
           style={{
@@ -311,7 +312,7 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Eyebrow tone="ink">The Difference</Eyebrow>
+            <Eyebrow tone="navy">The Difference</Eyebrow>
             <h2 className="text-4xl lg:text-5xl text-[var(--midnight-blue)] mb-5" style={{ lineHeight: 1.1, fontWeight: 800 }}>
               Real results for real districts
             </h2>

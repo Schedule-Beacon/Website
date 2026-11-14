@@ -280,7 +280,7 @@ export function Root() {
         <Outlet />
       </main>
 
-      <footer className="bg-[var(--midnight-blue)] text-white">
+      <footer className="bg-[var(--midnight-blue)] text-white border-t border-white/30">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <div className="flex justify-center mb-10 pb-10 border-b border-white/10">
             <img
