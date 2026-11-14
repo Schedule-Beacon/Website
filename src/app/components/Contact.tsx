@@ -1,5 +1,6 @@
 import { motion } from "motion/react";
-import { Send, Loader2, AlertCircle } from "lucide-react";
+import { ArrowRight, ChevronDown, Loader2, AlertCircle } from "lucide-react";
+import { Link } from "react-router";
 import { Eyebrow, LightHero } from "./Brand";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -96,258 +97,197 @@ export function Contact() {
         </p>
       </LightHero>
 
-      {/* ── Contact Channels ────────────────────────────────── */}
-      <section className="bg-[var(--midnight-blue)]">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2">
-          {contactChannels.map((channel, i) => (
-            <motion.a
-              key={i}
-              href={channel.href}
-              className={`group block py-12 md:px-12 ${i === 0 ? "md:pl-0 border-b md:border-b-0 md:border-r border-white/10" : "md:pr-0"}`}
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <div className="text-[var(--university-gold)] text-xs uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.25em" }}>
-                {channel.title}
-              </div>
-              <div
-                className="text-white text-2xl md:text-3xl group-hover:text-[var(--university-gold)] transition-colors"
-                style={{ fontWeight: 800 }}
-              >
-                {channel.detail}
-              </div>
-              <div className="text-white/50 text-sm mt-2">{channel.sub}</div>
-            </motion.a>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Contact Form ────────────────────────────────────── */}
+      {/* ── Contact Panel + Form ─────────────────────────────── */}
       <section
-        className="py-24 bg-[var(--soft-grey)]"
+        className="py-20 bg-[var(--soft-grey)]"
         style={{ backgroundImage: "radial-gradient(circle, rgba(0,33,71,0.07) 1.2px, transparent 1.2px)", backgroundSize: "22px 22px" }}
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
-            {/* Sidebar info */}
-            <motion.div
-              className="lg:col-span-2 space-y-8"
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
-              <div>
-                <Eyebrow align="left" tone="navy">Send a Message</Eyebrow>
-                <h2 className="text-3xl text-[var(--midnight-blue)] mb-4">Get in touch</h2>
-                <p className="text-[var(--midnight-blue)]/55 text-sm" style={{ lineHeight: 1.8 }}>
+        <motion.div
+          className="max-w-6xl mx-auto px-6"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] bg-white rounded-2xl overflow-hidden shadow-2xl shadow-[var(--midnight-blue)]/10 ring-1 ring-black/5">
+            {/* Info panel */}
+            <aside className="relative bg-[var(--midnight-blue)] text-white p-10 flex flex-col overflow-hidden">
+              <div className="absolute -bottom-28 -right-28 w-80 h-80 rounded-full bg-[var(--university-gold)] opacity-[0.12] blur-3xl" />
+              <div className="relative">
+                <h2 className="text-2xl mb-3" style={{ fontWeight: 800 }}>Contact information</h2>
+                <p className="text-white/60 text-sm" style={{ lineHeight: 1.7 }}>
                   Fill out the form and a member of our team will be in touch within one business day. For urgent
                   issues, please call us directly.
                 </p>
               </div>
 
-              <dl className="border-t-2 border-[var(--midnight-blue)] divide-y divide-[var(--midnight-blue)]/10">
-                <div className="py-4 grid grid-cols-[130px_1fr] gap-4">
-                  <dt className="text-[var(--midnight-blue)]/45 text-xs uppercase pt-0.5" style={{ fontWeight: 700, letterSpacing: "0.18em" }}>
+              <dl className="relative mt-10 space-y-7">
+                {contactChannels.map((channel) => (
+                  <div key={channel.title}>
+                    <dt className="text-[var(--university-gold)] text-[11px] uppercase mb-1.5" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                      {channel.title}
+                    </dt>
+                    <dd>
+                      <a href={channel.href} className="text-white text-lg hover:text-[var(--university-gold)] transition-colors" style={{ fontWeight: 700 }}>
+                        {channel.detail}
+                      </a>
+                      <div className="text-white/45 text-xs mt-0.5">{channel.sub}</div>
+                    </dd>
+                  </div>
+                ))}
+                <div>
+                  <dt className="text-[var(--university-gold)] text-[11px] uppercase mb-1.5" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
                     Office
                   </dt>
-                  <dd className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>TBD</dd>
+                  <dd className="text-white" style={{ fontWeight: 600 }}>TBD</dd>
                 </div>
-                <div className="py-4 grid grid-cols-[130px_1fr] gap-4">
-                  <dt className="text-[var(--midnight-blue)]/45 text-xs uppercase pt-0.5" style={{ fontWeight: 700, letterSpacing: "0.18em" }}>
-                    Hours
+                <div>
+                  <dt className="text-[var(--university-gold)] text-[11px] uppercase mb-1.5" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                    Business Hours
                   </dt>
-                  <dd className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 600 }}>
-                    Monday – Friday<br />8:00 AM – 6:00 PM EST
+                  <dd className="text-white" style={{ fontWeight: 600 }}>
+                    Monday – Friday
+                    <div className="text-white/45 text-xs mt-0.5" style={{ fontWeight: 400 }}>8:00 AM – 6:00 PM EST</div>
                   </dd>
                 </div>
               </dl>
 
-              {/* FAQ nudge */}
-              <div className="bg-[#FFF8E5] border-l-4 border-[var(--university-gold)] p-6">
-                <div className="text-[var(--midnight-blue)] text-sm mb-2" style={{ fontWeight: 600 }}>
-                  Looking for quick answers?
+              {/* Quick answers */}
+              <div className="relative mt-auto pt-10">
+                <div className="border-t border-white/15 pt-6">
+                  <div className="text-white/50 text-sm mb-3">Looking for quick answers?</div>
+                  <div className="flex flex-col gap-2">
+                    <Link to="/faq" className="group inline-flex items-center gap-2 text-white hover:text-[var(--university-gold)] transition-colors text-sm" style={{ fontWeight: 700 }}>
+                      Browse the FAQ
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                    <Link to="/resources" className="group inline-flex items-center gap-2 text-white hover:text-[var(--university-gold)] transition-colors text-sm" style={{ fontWeight: 700 }}>
+                      Visit resources
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-                <p className="text-[var(--midnight-blue)]/55 text-xs mb-4">
-                  Check our resources library for guides, FAQs, and video tutorials.
-                </p>
-                <a
-                  href="/resources"
-                  className="text-xs text-[var(--midnight-blue)] underline underline-offset-2"
-                  style={{ fontWeight: 600 }}
-                >
-                  Browse resources →
-                </a>
               </div>
-            </motion.div>
+            </aside>
 
             {/* Form */}
-            <motion.div
-              className="lg:col-span-3 bg-white p-8 md:p-10 border-t-4 border-[var(--university-gold)] shadow-lg shadow-[var(--midnight-blue)]/5"
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-            >
+            <div className="p-8 md:p-12">
               {submitted ? (
                 <div className="h-full flex items-center justify-center">
                   <div className="text-center py-16">
                     <Eyebrow tone="navy">Received</Eyebrow>
-                    <h3 className="text-2xl text-[var(--midnight-blue)] mb-3">Message sent!</h3>
+                    <h3 className="text-2xl text-[var(--midnight-blue)] mb-3" style={{ fontWeight: 800 }}>Message sent!</h3>
                     <p className="text-[var(--midnight-blue)]/55">
                       Thanks for reaching out. We'll get back to you within one business day.
                     </p>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <>
+                  <div className="mb-8">
+                    <h2 className="text-2xl text-[var(--midnight-blue)]" style={{ fontWeight: 800 }}>Send us a message</h2>
+                    <p className="text-[var(--midnight-blue)]/50 text-sm mt-1">Fields marked * are required.</p>
+                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Full Name *</label>
+                        <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Jane Smith" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Work Email *</label>
+                        <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="jane@district.edu" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Phone Number</label>
+                        <input type="tel" name="phone" value={formData.phone} onChange={handleChange} placeholder="(555) 000-0000" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>School District</label>
+                        <input type="text" name="district" value={formData.district} onChange={handleChange} placeholder="Lincoln Unified School District" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>State</label>
+                        <div className="relative">
+                          <select name="state" value={formData.state} onChange={handleChange} className="w-full h-12 pl-4 pr-10 appearance-none cursor-pointer rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10">
+                            <option value="">Select state</option>
+                            {US_STATES.map((s) => (
+                              <option key={s} value={s}>{s}</option>
+                            ))}
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Subject *</label>
+                        <div className="relative">
+                          <select name="subject" required value={formData.subject} onChange={handleChange} className="w-full h-12 pl-4 pr-10 appearance-none cursor-pointer rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10">
+                            <option value="">Select a topic</option>
+                            <option value="demo">Request a Demo</option>
+                            <option value="pricing">Pricing &amp; Packages</option>
+                            <option value="support">Technical Support</option>
+                            <option value="integration">SIS Integration</option>
+                            <option value="other">General Inquiry</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
+
                     <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
+                      <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Message *</label>
+                      <textarea
+                        name="message"
                         required
-                        value={formData.name}
+                        rows={5}
+                        value={formData.message}
                         onChange={handleChange}
-                        placeholder="Jane Smith"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)] placeholder:text-gray-300"
+                        placeholder="Tell us about your scheduling challenges or questions..."
+                        className="w-full py-3 resize-none px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10"
                       />
                     </div>
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Work Email *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="jane@district.edu"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)] placeholder:text-gray-300"
-                      />
-                    </div>
-                  </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Phone Number
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="(555) 000-0000"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)] placeholder:text-gray-300"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        School District
-                      </label>
-                      <input
-                        type="text"
-                        name="district"
-                        value={formData.district}
-                        onChange={handleChange}
-                        placeholder="Lincoln Unified School District"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)] placeholder:text-gray-300"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                      State
-                    </label>
-                    <select
-                      name="state"
-                      value={formData.state}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)]"
-                    >
-                      <option value="">Select state</option>
-                      {US_STATES.map((s) => (
-                        <option key={s} value={s}>{s}</option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                      Subject *
-                    </label>
-                    <select
-                      name="subject"
-                      required
-                      value={formData.subject}
-                      onChange={handleChange}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)]"
-                    >
-                      <option value="">Select a topic</option>
-                      <option value="demo">Request a Demo</option>
-                      <option value="pricing">Pricing &amp; Packages</option>
-                      <option value="support">Technical Support</option>
-                      <option value="integration">SIS Integration</option>
-                      <option value="other">General Inquiry</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                      Message *
-                    </label>
-                    <textarea
-                      name="message"
-                      required
-                      rows={5}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="Tell us about your scheduling challenges or questions..."
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all bg-white text-[var(--midnight-blue)] placeholder:text-gray-300 resize-none"
-                    />
-                  </div>
-
-                  {/* Error banner */}
-                  {error && (
-                    <div className="flex items-start gap-3 bg-red-50 border border-red-100 rounded-xl p-4">
-                      <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                      <p className="text-red-700 text-sm">{error}</p>
-                    </div>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-[var(--midnight-blue)] text-white py-4 rounded-xl hover:bg-[var(--midnight-blue)]/90 transition-all hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ fontWeight: 700 }}
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Sending…
-                      </>
-                    ) : (
-                      <>
-                        Send Message
-                        <Send className="w-4 h-4" />
-                      </>
+                    {error && (
+                      <div className="flex items-start gap-3 bg-red-50 border border-red-100 rounded-lg p-4">
+                        <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                        <p className="text-red-700 text-sm">{error}</p>
+                      </div>
                     )}
-                  </button>
-                  <p className="text-xs text-center text-[var(--midnight-blue)]/40">
-                    By submitting, you agree to be contacted by Schedule Beacon about our products and services.
-                  </p>
-                </form>
+
+                    <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <p className="text-xs text-[var(--midnight-blue)]/40 sm:max-w-xs">
+                        By submitting, you agree to be contacted by Schedule Beacon about our products and services.
+                      </p>
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="shrink-0 inline-flex items-center justify-center gap-2 bg-[var(--midnight-blue)] text-white h-12 px-8 rounded-lg hover:bg-[#003366] hover:shadow-lg hover:shadow-[var(--midnight-blue)]/20 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                        style={{ fontWeight: 700 }}
+                      >
+                        {loading ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            Sending…
+                          </>
+                        ) : (
+                          <>
+                            Send Message
+                            <ArrowRight className="w-4 h-4" />
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </>
               )}
-            </motion.div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       </section>
     </div>
   );
