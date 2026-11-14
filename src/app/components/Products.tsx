@@ -67,9 +67,9 @@ const supportPillars = [
       "All support requests receive a response within one business day, so your team is never left waiting on a critical issue.",
   },
   {
-    title: "Always a Human",
+    title: "Personal Follow-Up",
     description:
-      "Every support interaction connects you with a real scheduling expert. No chatbots, no automated ticket queues.",
+      "Whenever your team needs help, a member of the Schedule Beacon team will personally follow up within one business day.",
   },
   {
     title: "Scheduling Season Coverage",
@@ -99,7 +99,7 @@ const updatesPillars = [
 const accordionMeta: Record<string, string> = {
   "Security and Compliance": "FERPA · NY §2-d · MA WISP · Encryption · Access Controls",
   "Dedicated Implementation Team": "Discovery · Build · Training · Go-live",
-  "Ongoing Support": "1-day response · Human support · Seasonal coverage",
+  "Ongoing Support": "1-day response · Personal follow-up · Seasonal coverage",
   "Regular Platform Updates": "Client feedback · Surveys · Feature testing",
 };
 

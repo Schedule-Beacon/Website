@@ -50,12 +50,6 @@ const faqs = [
       "Schedule Beacon supports traditional period-based schedules, A/B block schedules, semester-based structures, and hybrid models. Support for unique bell schedules is a feature we are currently working to implement and is not yet available. During onboarding, our team works with you to configure the platform to match your district's existing schedule structure.",
   },
   {
-    category: "product",
-    question: "Can we make changes to the schedule after it's published?",
-    answer:
-      "Yes. Schedule Beacon supports real-time edits throughout the school year. As you make changes, our platform can accommodate accordingly and flag any conflicts so you can resolve them before they affect students.",
-  },
-  {
     category: "implementation",
     question: "How long does it take to get up and running?",
     answer:
@@ -65,7 +59,7 @@ const faqs = [
     category: "implementation",
     question: "What kind of support does Schedule Beacon provide?",
     answer:
-      "We provide hands-on support throughout implementation and ongoing support once you're live. All support requests receive a response within one business day, and every interaction connects you with a real scheduling expert — not a chatbot or automated queue. We also provide increased support coverage during peak scheduling periods.",
+      "We provide hands-on support throughout implementation and ongoing support once you're live. Whenever your team needs help, a member of the Schedule Beacon team will personally follow up within one business day, so no issue is left waiting. We also expand our support coverage during peak scheduling periods, when your team needs it most.",
   },
   {
     category: "implementation",
