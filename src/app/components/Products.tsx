@@ -165,22 +165,22 @@ function BenefitBar({ benefit, index }: { benefit: { title: string; body: string
       <button
         onClick={() => setOpen(!open)}
         aria-expanded={open}
-        className={`w-full flex items-stretch text-left bg-[var(--midnight-blue)] rounded-xl overflow-hidden shadow-lg shadow-[var(--midnight-blue)]/25 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 ${
+        className={`w-full flex items-stretch text-left bg-white rounded-xl overflow-hidden shadow-lg shadow-black/25 hover:-translate-y-0.5 hover:shadow-xl transition-all duration-300 ${
           right ? "md:flex-row-reverse" : ""
         }`}
       >
-        <div className="bg-white/10 w-16 md:w-20 shrink-0 flex items-center justify-center">
-          <span className="text-[var(--university-gold)] text-2xl" style={{ fontWeight: 900 }}>
+        <div className="bg-[var(--university-gold)] w-16 md:w-20 shrink-0 flex items-center justify-center">
+          <span className="text-[var(--midnight-blue)] text-2xl" style={{ fontWeight: 900 }}>
             {String(index + 1).padStart(2, "0")}
           </span>
         </div>
         <div className="flex-1 px-6 py-5">
           <div className={`flex items-center gap-3 ${right ? "md:flex-row-reverse" : ""}`}>
-            <h3 className={`flex-1 text-white text-lg ${right ? "md:text-right" : ""}`} style={{ fontWeight: 800, lineHeight: 1.3 }}>
+            <h3 className={`flex-1 text-[var(--midnight-blue)] text-lg ${right ? "md:text-right" : ""}`} style={{ fontWeight: 800, lineHeight: 1.3 }}>
               {benefit.title}
             </h3>
             <ChevronDown
-              className="w-5 h-5 text-[var(--university-gold)] shrink-0 transition-transform duration-300"
+              className="w-5 h-5 text-[var(--midnight-blue)]/50 shrink-0 transition-transform duration-300"
               style={{ transform: open ? "rotate(180deg)" : "none" }}
             />
           </div>
@@ -191,7 +191,7 @@ function BenefitBar({ benefit, index }: { benefit: { title: string; body: string
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="overflow-hidden text-white/70 text-sm text-center"
+                className="overflow-hidden text-[var(--midnight-blue)]/65 text-sm text-center"
                 style={{ lineHeight: 1.65 }}
               >
                 <span className="block pt-3 max-w-md mx-auto">{benefit.body}</span>
@@ -295,13 +295,14 @@ export function Products() {
       </section>
 
       {/* ── Benefits ─────────────────────────────────────────── */}
-      <section id="difference" className="py-24 bg-[#FFF8E5] relative overflow-hidden">
-        <div className="absolute -top-32 -right-32 w-[520px] h-[520px] rounded-full bg-[var(--university-gold)] opacity-[0.18] blur-3xl" />
+      <section id="difference" className="py-24 bg-[var(--midnight-blue)] relative overflow-hidden">
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[800px] h-[500px] rounded-full bg-[var(--university-gold)] opacity-[0.07] blur-3xl" />
         <div
-          className="absolute inset-0 opacity-[0.07]"
+          className="absolute inset-0 opacity-[0.04]"
           style={{
-            backgroundImage: "radial-gradient(circle, var(--midnight-blue) 1.2px, transparent 1.2px)",
-            backgroundSize: "22px 22px",
+            backgroundImage:
+              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
           }}
         />
         <div className="max-w-5xl mx-auto px-6 relative z-10">
@@ -312,11 +313,11 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Eyebrow tone="navy">The Difference</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl text-[var(--midnight-blue)] mb-5" style={{ lineHeight: 1.1, fontWeight: 800 }}>
-              Real results for real districts
+            <Eyebrow>The Difference</Eyebrow>
+            <h2 className="text-4xl lg:text-5xl text-white mb-5" style={{ lineHeight: 1.1, fontWeight: 800 }}>
+              Real results for <span className="text-[var(--university-gold)]">real districts</span>
             </h2>
-            <p className="text-[var(--midnight-blue)]/75 text-lg max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
+            <p className="text-white/60 text-lg max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
               Better schedules show up everywhere: in the classes students get, the time staff win back, and how
               clearly leaders can see what's happening across the district.
             </p>
@@ -331,15 +332,7 @@ export function Products() {
       </section>
 
       {/* ── Enterprise Platform ─────────────────────────────── */}
-      <section id="platform" className="py-24 bg-[var(--midnight-blue)] relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
+      <section id="platform" className="py-24 bg-white relative overflow-hidden">
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <motion.div
             className="text-center mb-14"
@@ -348,30 +341,30 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Eyebrow>Enterprise Platform</Eyebrow>
-            <h2 className="text-4xl text-white">Built for how districts actually work</h2>
+            <Eyebrow tone="navy">Enterprise Platform</Eyebrow>
+            <h2 className="text-4xl text-[var(--midnight-blue)]">Built for how districts actually work</h2>
           </motion.div>
 
           {/* Security & Compliance */}
           <motion.div
-            className="bg-white rounded-2xl p-10 shadow-sm ring-1 ring-black/5"
+            className="bg-white rounded-2xl overflow-hidden border-2 border-[var(--university-gold)] shadow-xl shadow-[var(--midnight-blue)]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 lg:gap-12 items-end mb-10">
+            <div className="bg-[var(--midnight-blue)] px-10 py-8 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 lg:gap-12 items-end">
               <div>
-                <div className="text-[#B8860B] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                <div className="text-[var(--university-gold)] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
                   01 · Security &amp; Compliance
                 </div>
-                <h3 className="text-[var(--midnight-blue)] text-2xl" style={{ fontWeight: 800 }}>Protecting every student record</h3>
+                <h3 className="text-white text-2xl" style={{ fontWeight: 800 }}>Protecting every student record</h3>
               </div>
-              <p className="text-[var(--midnight-blue)]/60 text-sm" style={{ lineHeight: 1.75 }}>
+              <p className="text-white/65 text-sm" style={{ lineHeight: 1.75 }}>
                 In a FERPA-regulated environment, security is a foundation. Here is how we approach it.
               </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
+            <div className="p-10 pb-0 grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
               {securityPillars.map((p) => (
                 <div key={p.title} className="border-t-2 border-[var(--university-gold)] pt-4">
                   <div className="text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 800 }}>{p.title}</div>
@@ -379,7 +372,7 @@ export function Products() {
                 </div>
               ))}
             </div>
-            <p className="mt-10 pt-6 border-t border-[var(--midnight-blue)]/10 text-[var(--midnight-blue)]/55 text-sm" style={{ lineHeight: 1.75 }}>
+            <p className="mx-10 mb-10 mt-10 pt-6 border-t border-[var(--midnight-blue)]/10 text-[var(--midnight-blue)]/55 text-sm" style={{ lineHeight: 1.75 }}>
               Security and compliance are an ongoing responsibility that evolves alongside our platform and the
               regulatory landscape. We're glad to walk any district's IT or compliance team through our
               infrastructure, data handling, and privacy practices in detail.
@@ -388,26 +381,26 @@ export function Products() {
 
           {/* Implementation — timeline */}
           <motion.div
-            className="mt-8 bg-white rounded-2xl p-10 shadow-sm ring-1 ring-black/5"
+            className="mt-8 bg-white rounded-2xl overflow-hidden border-2 border-[var(--university-gold)] shadow-xl shadow-[var(--midnight-blue)]/10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 lg:gap-12 items-end mb-10">
+            <div className="bg-[var(--midnight-blue)] px-10 py-8 grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 lg:gap-12 items-end">
               <div>
-                <div className="text-[#B8860B] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                <div className="text-[var(--university-gold)] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
                   02 · Dedicated Implementation Team
                 </div>
-                <h3 className="text-[var(--midnight-blue)] text-2xl" style={{ fontWeight: 800 }}>From discovery to go-live</h3>
+                <h3 className="text-white text-2xl" style={{ fontWeight: 800 }}>From discovery to go-live</h3>
               </div>
-              <p className="text-[var(--midnight-blue)]/60 text-sm" style={{ lineHeight: 1.75 }}>
+              <p className="text-white/65 text-sm" style={{ lineHeight: 1.75 }}>
                 Every district gets a dedicated scheduling expert who guides you through each phase, from initial
                 discovery to go-live.
               </p>
             </div>
-            <ol className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="hidden md:block absolute top-[7px] left-0 right-0 h-0.5 bg-[var(--university-gold)]/40" />
+            <ol className="relative p-10 grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="hidden md:block absolute top-[47px] left-10 right-10 h-0.5 bg-[var(--university-gold)]/40" />
               {implementationPillars.map((p, i) => (
                 <li key={p.title} className="relative">
                   <div className="relative w-4 h-4 bg-[var(--university-gold)] rotate-45 mb-6 ring-4 ring-white" />
@@ -441,18 +434,20 @@ export function Products() {
             ].map((block, bi) => (
               <motion.div
                 key={block.label}
-                className="bg-white rounded-2xl p-10 shadow-sm ring-1 ring-black/5 border-t-4 border-[var(--university-gold)]"
+                className="bg-white rounded-2xl overflow-hidden border-2 border-[var(--university-gold)] shadow-xl shadow-[var(--midnight-blue)]/10"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: bi * 0.1 }}
               >
-                <div className="text-[#B8860B] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                <div className="bg-[var(--midnight-blue)] px-10 py-8">
+                <div className="text-[var(--university-gold)] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
                   {block.n} · {block.label}
                 </div>
-                <h3 className="text-[var(--midnight-blue)] text-2xl mb-3" style={{ fontWeight: 800 }}>{block.title}</h3>
-                <p className="text-[var(--midnight-blue)]/60 text-sm mb-6" style={{ lineHeight: 1.75 }}>{block.intro}</p>
-                <dl className="divide-y divide-[var(--midnight-blue)]/10 border-t border-[var(--midnight-blue)]/10">
+                <h3 className="text-white text-2xl mb-3" style={{ fontWeight: 800 }}>{block.title}</h3>
+                <p className="text-white/65 text-sm" style={{ lineHeight: 1.75 }}>{block.intro}</p>
+                </div>
+                <dl className="px-10 py-4 divide-y divide-[var(--midnight-blue)]/10">
                   {block.items.map((p) => (
                     <div key={p.title} className="py-4 grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1 sm:gap-6">
                       <dt className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 800 }}>{p.title}</dt>
