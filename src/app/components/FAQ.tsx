@@ -104,13 +104,13 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
 
   return (
     <motion.div
-      className={`border-b border-[var(--midnight-blue)]/10 transition-colors ${open ? "bg-[#FFF8E5]/60" : ""}`}
+      className={`border-b border-[var(--midnight-blue)]/10 transition-colors duration-200 ${open ? "bg-[#FFF3CC]/70" : "hover:bg-[var(--midnight-blue)]/[0.05]"}`}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.4 }}
     >
-      <button onClick={() => setOpen(!open)} className="group w-full flex items-start gap-5 py-6 pr-2 text-left">
+      <button onClick={() => setOpen(!open)} className="group w-full flex items-start gap-5 py-6 pl-3 pr-4 text-left">
         <span
           className={`text-sm w-8 shrink-0 pt-0.5 transition-colors ${open ? "text-[#B8860B]" : "text-[var(--midnight-blue)]/30"}`}
           style={{ fontWeight: 800 }}
@@ -137,7 +137,7 @@ function FAQItem({ question, answer, index }: { question: string; answer: string
             transition={{ duration: 0.28, ease: "easeInOut" }}
             className="overflow-hidden"
           >
-            <p className="pl-[3.25rem] pr-10 pb-7 text-[var(--midnight-blue)]/70" style={{ lineHeight: 1.8 }}>
+            <p className="pl-[4rem] pr-12 pb-7 text-[var(--midnight-blue)]/70" style={{ lineHeight: 1.8 }}>
               {answer}
             </p>
           </motion.div>
