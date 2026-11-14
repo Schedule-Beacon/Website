@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 import { Link } from "react-router";
-import { ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { Eyebrow, NavyHero } from "./Brand";
 
 const securityPillars = [
@@ -96,119 +95,6 @@ const updatesPillars = [
   },
 ];
 
-const accordionMeta: Record<string, string> = {
-  "Security and Compliance": "FERPA · NY §2-d · MA WISP · Encryption · Access Controls",
-  "Dedicated Implementation Team": "Discovery · Build · Training · Go-live",
-  "Ongoing Support": "1-day response · Personal follow-up · Seasonal coverage",
-  "Regular Platform Updates": "Client feedback · Surveys · Feature testing",
-};
-
-const accordionPillars: Record<string, typeof securityPillars> = {
-  "Security and Compliance": securityPillars,
-  "Dedicated Implementation Team": implementationPillars,
-  "Ongoing Support": supportPillars,
-  "Regular Platform Updates": updatesPillars,
-};
-
-const accordionIntro: Record<string, string> = {
-  "Security and Compliance": "In a FERPA-regulated environment, security is a foundation. Here is how we approach it.",
-  "Dedicated Implementation Team": "Every district gets a dedicated scheduling expert who guides you through each phase, from initial discovery to go-live.",
-  "Ongoing Support": "After go-live, your district has direct access to our team — not a helpdesk queue.",
-  "Regular Platform Updates": "Schedule Beacon improves continuously, driven by direct input from the districts we work with.",
-};
-
-function PlatformAccordion({ feature, index }: { feature: typeof platformFeatures[0]; index: number }) {
-  const [open, setOpen] = useState(false);
-  const meta = accordionMeta[feature.title] ?? "";
-  const pillars = accordionPillars[feature.title] ?? [];
-  const intro = accordionIntro[feature.title] ?? "";
-  return (
-    <motion.div
-      className="border overflow-hidden transition-colors duration-200 bg-white"
-      style={{ borderColor: open ? "var(--midnight-blue)" : "rgb(243 244 246)" }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
-    >
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-5 px-6 py-5 text-left transition-colors duration-200"
-        style={{ background: open ? "rgba(0,33,71,0.03)" : "white" }}
-      >
-        {/* Left accent bar */}
-        <div
-          className="w-1 self-stretch shrink-0 transition-colors duration-200"
-          style={{ background: open ? "var(--university-gold)" : "rgb(229 231 235)", minHeight: "2.5rem" }}
-        />
-        <span className="text-[var(--midnight-blue)]/30 text-xl w-8 shrink-0" style={{ fontWeight: 900 }}>
-          0{index + 1}
-        </span>
-        <div className="flex-1 min-w-0">
-          <div className="text-[var(--midnight-blue)]" style={{ fontSize: "1rem", fontWeight: 600 }}>
-            {feature.title}
-          </div>
-          {meta && (
-            <div className="text-[var(--midnight-blue)]/40 text-xs mt-0.5 truncate" style={{ fontWeight: 500, letterSpacing: "0.01em" }}>
-              {meta}
-            </div>
-          )}
-        </div>
-        <ChevronDown
-          className="w-5 h-5 shrink-0 transition-transform duration-300"
-          style={{ transform: open ? "rotate(180deg)" : "rotate(0deg)", color: open ? "var(--midnight-blue)" : "rgb(156 163 175)" }}
-        />
-      </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="content"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25, ease: "easeInOut" }}
-            style={{ overflow: "hidden" }}
-          >
-            <div className="px-6 pb-7 pt-2">
-              {intro && (
-                <p className="text-[var(--midnight-blue)]/75 mb-6" style={{ fontSize: "1rem", fontWeight: 600, lineHeight: 1.6 }}>
-                  {intro}
-                </p>
-              )}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {pillars.map((pillar, i) => {
-                  const isOddTotal = pillars.length % 2 !== 0;
-                  const isLastOdd = isOddTotal && i === pillars.length - 1;
-                  return (
-                    <div
-                      key={i}
-                      className="p-5 border-l-2 border-[var(--university-gold)] bg-[var(--soft-grey)]/60"
-                      style={isLastOdd ? { gridColumn: "1 / -1", maxWidth: "calc(50% - 8px)", margin: "0 auto", width: "100%" } : {}}
-                    >
-                      <h4 className="text-[var(--midnight-blue)] mb-1.5 text-sm" style={{ fontWeight: 700 }}>
-                        {pillar.title}
-                      </h4>
-                      <p className="text-[var(--midnight-blue)]/55 text-sm" style={{ lineHeight: 1.65 }}>
-                        {pillar.description}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-              {feature.title === "Security and Compliance" && (
-                <p className="text-[var(--midnight-blue)]/75 mt-6" style={{ fontSize: "1rem", fontWeight: 600, lineHeight: 1.6 }}>
-                  Security and compliance are not a one-time checklist — they are an ongoing responsibility that evolves alongside our platform and the regulatory landscape districts operate within. We are glad to walk any district's IT or compliance team through our infrastructure, data handling, and privacy practices in detail.
-                </p>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
-  );
-}
-
-
 const coreFeatures = [
   {
     title: "Automated Scheduling Engine",
@@ -238,16 +124,32 @@ const coreFeatures = [
 ];
 
 const benefits = [
-  ["Achieve higher student course placement rates", "Eliminate scheduling conflicts across all buildings", "Balance teacher workloads across departments"],
-  ["Support equity and compliance requirements", "Reduce time spent on manual scheduling tasks", "Give administrators clear visibility into the full schedule"],
+  {
+    title: "Higher course placement rates",
+    body: "More students get the courses they requested, the first time the schedule is built.",
+  },
+  {
+    title: "Schedules aligned across buildings",
+    body: "Organize schedules district-wide so shared staff, rooms, and programs line up across every school.",
+  },
+  {
+    title: "Balanced teacher workloads",
+    body: "Distribute sections evenly across departments so no team carries more than its share.",
+  },
+  {
+    title: "Equity and compliance, built in",
+    body: "Keep equity and compliance requirements in view throughout the scheduling process, not after it.",
+  },
+  {
+    title: "Less manual scheduling work",
+    body: "Automation takes on the repetitive tasks that consume weeks of staff time every year.",
+  },
+  {
+    title: "Full-schedule visibility",
+    body: "Administrators get a clear view of the entire master schedule in one place.",
+  },
 ];
 
-const platformFeatures = [
-  { title: "Security and Compliance" },
-  { title: "Dedicated Implementation Team" },
-  { title: "Ongoing Support" },
-  { title: "Regular Platform Updates" },
-];
 
 export function Products() {
   return (
@@ -261,26 +163,9 @@ export function Products() {
           </>
         }
       >
-        <p className="text-lg text-white/70 mb-9 max-w-xl mx-auto" style={{ lineHeight: 1.7 }}>
+        <p className="text-lg text-white/70 max-w-xl mx-auto" style={{ lineHeight: 1.7 }}>
           Purpose-built for K-12 school districts. Build master schedules in days, while ensuring every student gets the courses they need.
         </p>
-        <div className="flex flex-wrap justify-center gap-3">
-          <Link
-            to="/demo"
-            className="inline-flex items-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-7 py-3.5 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all hover:shadow-lg"
-            style={{ fontWeight: 700 }}
-          >
-            Request a Demo
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <Link
-            to="/resources"
-            className="inline-flex items-center gap-2 border-2 border-white/30 text-white px-7 py-3 rounded-xl hover:border-white transition-all"
-            style={{ fontWeight: 600 }}
-          >
-            View Resources
-          </Link>
-        </div>
       </NavyHero>
 
       {/* ── Core Features ───────────────────────────────────── */}
@@ -356,12 +241,66 @@ export function Products() {
         </div>
       </section>
 
-      {/* ── Benefits Strip ──────────────────────────────────── */}
+      {/* ── Benefits ─────────────────────────────────────────── */}
       <section id="difference" className="py-24 bg-[var(--midnight-blue)] relative overflow-hidden">
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-1/4 w-96 h-96 bg-[var(--university-gold)] rounded-full blur-3xl" />
+        <div
+          className="absolute inset-0 opacity-[0.04]"
+          style={{
+            backgroundImage:
+              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        <div className="absolute -top-40 right-0 w-[600px] h-[500px] rounded-full bg-[var(--university-gold)] opacity-[0.08] blur-3xl" />
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-end mb-14"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div>
+              <Eyebrow align="left">The Difference</Eyebrow>
+              <h2 className="text-4xl lg:text-5xl text-white" style={{ lineHeight: 1.1 }}>
+                Real results for <span className="text-[var(--university-gold)]">real districts</span>
+              </h2>
+            </div>
+            <p className="text-white/60 text-lg lg:pb-2" style={{ lineHeight: 1.7 }}>
+              Better schedules show up everywhere: in the classes students get, the time staff win back, and how
+              clearly leaders can see what's happening across the district.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10">
+            {benefits.map((b, i) => (
+              <motion.div
+                key={b.title}
+                className="group relative p-8 border-r border-b border-white/10 hover:bg-white/[0.04] transition-colors"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.06 }}
+              >
+                <div className="absolute top-0 left-0 h-0.5 w-0 bg-[var(--university-gold)] group-hover:w-full transition-all duration-500" />
+                <div className="text-[var(--university-gold)] text-sm mb-6" style={{ fontWeight: 800, letterSpacing: "0.1em" }}>
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <h3 className="text-white text-xl mb-3" style={{ fontWeight: 800, lineHeight: 1.25 }}>
+                  {b.title}
+                </h3>
+                <p className="text-white/55 text-sm" style={{ lineHeight: 1.7 }}>
+                  {b.body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
+      </section>
+
+      {/* ── Enterprise Platform ─────────────────────────────── */}
+      <section id="platform" className="py-24 bg-[#FFF8E5]">
+        <div className="max-w-6xl mx-auto px-6">
           <motion.div
             className="text-center mb-14"
             initial={{ opacity: 0, y: 20 }}
@@ -369,52 +308,119 @@ export function Products() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Eyebrow>The Difference</Eyebrow>
-            <h2 className="text-4xl text-white">
-              Real results for real districts
-            </h2>
+            <Eyebrow tone="navy">Enterprise Platform</Eyebrow>
+            <h2 className="text-4xl text-[var(--midnight-blue)]">Built for how districts actually work</h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-0 max-w-4xl mx-auto">
-            {benefits.map((col, ci) => (
-              <div key={ci} className="space-y-6">
-                {col.map((benefit, i) => (
-                  <motion.div
-                    key={i}
-                    className="flex items-start gap-3"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: (ci * 3 + i) * 0.08 }}
-                  >
-                    <span className="h-0.5 w-6 bg-[var(--university-gold)] shrink-0 mt-[0.9rem]" />
-                    <span className="text-white/80 text-xl" style={{ lineHeight: 1.5 }}>{benefit}</span>
-                  </motion.div>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── Platform Features ───────────────────────────────── */}
-      <section id="platform" className="py-24 bg-[#FFF8E5]">
-        <div className="max-w-4xl mx-auto px-6">
+          {/* Security & Compliance — navy feature block */}
           <motion.div
-            className="text-center mb-16"
+            className="relative bg-[var(--midnight-blue)] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-[340px_1fr]"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <Eyebrow tone="navy">Enterprise Platform</Eyebrow>
-            <h2 className="text-4xl text-[var(--midnight-blue)]">
-              Built for how districts actually work
-            </h2>
+            <div className="p-10 border-b lg:border-b-0 lg:border-r border-white/10">
+              <div className="text-[var(--university-gold)] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                01 · Security &amp; Compliance
+              </div>
+              <h3 className="text-white text-2xl mb-4" style={{ fontWeight: 800, lineHeight: 1.2 }}>
+                Protecting every student record.
+              </h3>
+              <p className="text-white/60 text-sm mb-4" style={{ lineHeight: 1.75 }}>
+                In a FERPA-regulated environment, security is a foundation. Here is how we approach it.
+              </p>
+              <p className="text-white/45 text-xs" style={{ lineHeight: 1.75 }}>
+                Security and compliance are an ongoing responsibility that evolves alongside our platform and the
+                regulatory landscape. We're glad to walk any district's IT or compliance team through our
+                infrastructure, data handling, and privacy practices in detail.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
+              {securityPillars.map((p) => (
+                <div key={p.title} className="p-7 bg-[var(--midnight-blue)]">
+                  <div className="text-white mb-2" style={{ fontWeight: 700 }}>{p.title}</div>
+                  <p className="text-white/50 text-[13px]" style={{ lineHeight: 1.65 }}>{p.description}</p>
+                </div>
+              ))}
+            </div>
           </motion.div>
 
-          <div className="flex flex-col gap-3">
-            {platformFeatures.map((feature, i) => (
-              <PlatformAccordion key={i} feature={feature} index={i} />
+          {/* Implementation — timeline */}
+          <motion.div
+            className="mt-8 bg-white rounded-2xl p-10 shadow-sm ring-1 ring-black/5"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-4 lg:gap-12 items-end mb-10">
+              <div>
+                <div className="text-[#B8860B] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                  02 · Dedicated Implementation Team
+                </div>
+                <h3 className="text-[var(--midnight-blue)] text-2xl" style={{ fontWeight: 800 }}>From discovery to go-live</h3>
+              </div>
+              <p className="text-[var(--midnight-blue)]/60 text-sm" style={{ lineHeight: 1.75 }}>
+                Every district gets a dedicated scheduling expert who guides you through each phase, from initial
+                discovery to go-live.
+              </p>
+            </div>
+            <ol className="relative grid grid-cols-1 md:grid-cols-4 gap-8">
+              <div className="hidden md:block absolute top-[7px] left-0 right-0 h-0.5 bg-[var(--university-gold)]/40" />
+              {implementationPillars.map((p, i) => (
+                <li key={p.title} className="relative">
+                  <div className="relative w-4 h-4 bg-[var(--university-gold)] rotate-45 mb-6 ring-4 ring-white" />
+                  <div className="text-[var(--midnight-blue)]/40 text-xs mb-1" style={{ fontWeight: 800, letterSpacing: "0.1em" }}>
+                    STEP {i + 1}
+                  </div>
+                  <div className="text-[var(--midnight-blue)] text-lg mb-2" style={{ fontWeight: 800 }}>{p.title}</div>
+                  <p className="text-[var(--midnight-blue)]/60 text-[13px]" style={{ lineHeight: 1.65 }}>{p.description}</p>
+                </li>
+              ))}
+            </ol>
+          </motion.div>
+
+          {/* Support + Updates */}
+          <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {[
+              {
+                n: "03",
+                label: "Ongoing Support",
+                title: "A team that follows up",
+                intro: "After go-live, your district has direct access to the Schedule Beacon team whenever you need it.",
+                items: supportPillars,
+              },
+              {
+                n: "04",
+                label: "Regular Platform Updates",
+                title: "Shaped by districts",
+                intro: "Schedule Beacon improves continuously, driven by direct input from the districts we work with.",
+                items: updatesPillars,
+              },
+            ].map((block, bi) => (
+              <motion.div
+                key={block.label}
+                className="bg-white rounded-2xl p-10 shadow-sm ring-1 ring-black/5 border-t-4 border-[var(--university-gold)]"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: bi * 0.1 }}
+              >
+                <div className="text-[#B8860B] text-[11px] uppercase mb-3" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                  {block.n} · {block.label}
+                </div>
+                <h3 className="text-[var(--midnight-blue)] text-2xl mb-3" style={{ fontWeight: 800 }}>{block.title}</h3>
+                <p className="text-[var(--midnight-blue)]/60 text-sm mb-6" style={{ lineHeight: 1.75 }}>{block.intro}</p>
+                <dl className="divide-y divide-[var(--midnight-blue)]/10 border-t border-[var(--midnight-blue)]/10">
+                  {block.items.map((p) => (
+                    <div key={p.title} className="py-4 grid grid-cols-1 sm:grid-cols-[170px_1fr] gap-1 sm:gap-6">
+                      <dt className="text-[var(--midnight-blue)] text-sm" style={{ fontWeight: 800 }}>{p.title}</dt>
+                      <dd className="text-[var(--midnight-blue)]/60 text-[13px]" style={{ lineHeight: 1.65 }}>{p.description}</dd>
+                    </div>
+                  ))}
+                </dl>
+              </motion.div>
             ))}
           </div>
         </div>
