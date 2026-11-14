@@ -1,5 +1,5 @@
 import { motion } from "motion/react";
-import { ArrowRight, Loader2, AlertCircle } from "lucide-react";
+import { ArrowRight, ChevronDown, Loader2, AlertCircle } from "lucide-react";
 import { Eyebrow, NavyHero } from "./Brand";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
@@ -110,25 +110,6 @@ export function RequestDemo() {
         </p>
       </NavyHero>
 
-      {/* ── Digital Twin Callout ────────────────────────────── */}
-      <section className="bg-[var(--university-gold)]">
-        <div className="max-w-5xl mx-auto px-6 py-8">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-[auto_1fr] gap-4 md:gap-10 items-center"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="text-[var(--midnight-blue)] text-xl md:border-r-2 md:border-[var(--midnight-blue)]/20 md:pr-10" style={{ fontWeight: 800, lineHeight: 1.25 }}>
-              Your demo is a<br className="hidden md:block" /> digital twin of your district.
-            </div>
-            <p className="text-[var(--midnight-blue)]/80" style={{ lineHeight: 1.65 }}>
-              We build the walkthrough around data that resembles your schools, so you see a realistic picture of how Schedule Beacon will actually work for you — not a generic demo.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
       {/* ── What to Expect ──────────────────────────────────── */}
       <section className="py-14 bg-white border-b border-gray-100">
         <div className="max-w-5xl mx-auto px-6">
@@ -156,244 +137,220 @@ export function RequestDemo() {
         </div>
       </section>
 
-      {/* ── Main Content ────────────────────────────────────── */}
+      {/* ── Digital Twin Panel + Form ───────────────────────── */}
       <section
-        className="py-16 bg-[var(--soft-grey)]"
+        className="py-20 bg-[var(--soft-grey)]"
         style={{ backgroundImage: "radial-gradient(circle, rgba(0,33,71,0.07) 1.2px, transparent 1.2px)", backgroundSize: "22px 22px" }}
       >
-        <div className="max-w-3xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            {submitted ? (
-              <div className="bg-white p-12 border-t-4 border-[var(--university-gold)] shadow-sm text-center">
-                <Eyebrow tone="navy">Request Received</Eyebrow>
-                <h3 className="text-2xl text-[var(--midnight-blue)] mb-3">You're on the list!</h3>
-                <p className="text-[var(--midnight-blue)]/55 mb-6">
-                  A scheduling expert will reach out within one business day to confirm your demo time.
+        <motion.div
+          className="max-w-6xl mx-auto px-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] bg-white rounded-2xl overflow-hidden shadow-2xl shadow-[var(--midnight-blue)]/10 ring-1 ring-black/5">
+            {/* Digital twin panel */}
+            <aside className="relative bg-[var(--midnight-blue)] text-white p-10 flex flex-col overflow-hidden">
+              <div className="absolute -bottom-28 -right-28 w-80 h-80 rounded-full bg-[var(--university-gold)] opacity-[0.12] blur-3xl" />
+              <div className="relative">
+                <div className="text-[var(--university-gold)] text-[11px] uppercase mb-4" style={{ fontWeight: 700, letterSpacing: "0.22em" }}>
+                  How Your Demo Works
+                </div>
+                <h2 className="text-3xl mb-5" style={{ fontWeight: 800, lineHeight: 1.15 }}>
+                  Your demo is a <span className="text-[var(--university-gold)]">digital twin</span> of your district.
+                </h2>
+                <p className="text-white/65" style={{ lineHeight: 1.75 }}>
+                  We build the walkthrough around data that resembles your schools, so you see a realistic picture of
+                  how Schedule Beacon will actually work for you — not a generic demo.
                 </p>
-                <div className="bg-[var(--soft-grey)] rounded-xl p-4 text-sm text-[var(--midnight-blue)]/60">
-                  While you wait, explore our{" "}
-                  <a href="/resources" className="text-[var(--midnight-blue)] underline underline-offset-2">
-                    resources library
-                  </a>{" "}
-                  to see case studies and guides.
+              </div>
+
+              <div className="relative mt-auto pt-12">
+                <div className="border-t border-white/15 pt-6">
+                  <div className="text-white/50 text-sm mb-3">Prefer to reach out directly?</div>
+                  <div className="flex flex-col gap-1.5">
+                    <a href="mailto:info@schedulebeacon.com" className="text-white hover:text-[var(--university-gold)] transition-colors text-sm" style={{ fontWeight: 700 }}>
+                      info@schedulebeacon.com
+                    </a>
+                    <a href="tel:+15184195335" className="text-white hover:text-[var(--university-gold)] transition-colors text-sm" style={{ fontWeight: 700 }}>
+                      (518) 419-5335
+                    </a>
+                  </div>
                 </div>
               </div>
-            ) : (
-              <div className="bg-white p-8 md:p-10 border-t-4 border-[var(--university-gold)] shadow-lg shadow-[var(--midnight-blue)]/5">
-                <h2 className="text-2xl text-[var(--midnight-blue)] mb-1">
-                  Tell us about your district
-                </h2>
-                <p className="text-[var(--midnight-blue)]/50 text-sm mb-8">
-                  Share a few details and we will ensure our conversation addresses the needs and priorities of your district.
-                </p>
+            </aside>
 
-                <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Full Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="name"
-                        required
-                        value={formData.name}
-                        onChange={handleChange}
-                        placeholder="Jane Smith"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all placeholder:text-gray-300 text-[var(--midnight-blue)]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Work Email *
-                      </label>
-                      <input
-                        type="email"
-                        name="email"
-                        required
-                        value={formData.email}
-                        onChange={handleChange}
-                        placeholder="jane@district.edu"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all placeholder:text-gray-300 text-[var(--midnight-blue)]"
-                      />
-                    </div>
+            {/* Form */}
+            <div className="p-8 md:p-12">
+              {submitted ? (
+                <div className="h-full flex items-center justify-center">
+                  <div className="text-center py-16 max-w-md">
+                    <Eyebrow tone="navy">Request Received</Eyebrow>
+                    <h3 className="text-2xl text-[var(--midnight-blue)] mb-3" style={{ fontWeight: 800 }}>You're on the list!</h3>
+                    <p className="text-[var(--midnight-blue)]/55 mb-6">
+                      A scheduling expert will reach out within one business day to confirm your demo time.
+                    </p>
+                    <p className="text-sm text-[var(--midnight-blue)]/60">
+                      While you wait, explore our{" "}
+                      <a href="/resources" className="text-[var(--midnight-blue)] underline underline-offset-2" style={{ fontWeight: 600 }}>
+                        resources library
+                      </a>
+                      .
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <>
+                  <div className="mb-8">
+                    <h2 className="text-2xl text-[var(--midnight-blue)]" style={{ fontWeight: 800 }}>Tell us about your district</h2>
+                    <p className="text-[var(--midnight-blue)]/50 text-sm mt-1">
+                      Share a few details and we will ensure our conversation addresses the needs and priorities of your district.
+                    </p>
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        School District *
-                      </label>
+                  <form onSubmit={handleSubmit} className="space-y-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Full Name *</label>
+                        <input type="text" name="name" required value={formData.name} onChange={handleChange} placeholder="Jane Smith" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Work Email *</label>
+                        <input type="email" name="email" required value={formData.email} onChange={handleChange} placeholder="jane@district.edu" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>School District *</label>
+                        <input type="text" name="district" required value={formData.district} onChange={handleChange} placeholder="Lincoln Unified School District" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>State *</label>
+                        <div className="relative">
+                          <select name="state" required value={formData.state} onChange={handleChange} className="w-full h-12 pl-4 pr-10 appearance-none cursor-pointer rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10">
+                            <option value="">Select state</option>
+                            {US_STATES.map((s) => (
+                              <option key={s} value={s}>{s}</option>
+                            ))}
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Phone Number *</label>
+                        <input type="tel" name="phone" required value={formData.phone} onChange={handleChange} placeholder="(555) 000-0000" className="w-full h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10" />
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Your Role *</label>
+                        <div className="relative">
+                          <select name="role" required value={formData.role} onChange={handleChange} className="w-full h-12 pl-4 pr-10 appearance-none cursor-pointer rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10">
+                            <option value="">Select your role</option>
+                            <option value="superintendent">Superintendent</option>
+                            <option value="administrator">Administrator / Principal</option>
+                            <option value="counselor">Counselor</option>
+                            <option value="it">IT Staff</option>
+                            <option value="other">Other</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Number of Students *</label>
+                        <div className="relative">
+                          <select name="studentCount" required value={formData.studentCount} onChange={handleChange} className="w-full h-12 pl-4 pr-10 appearance-none cursor-pointer rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10">
+                            <option value="">Select range</option>
+                            <option value="0-500">Under 500</option>
+                            <option value="501-1000">501–1,000</option>
+                            <option value="1001-5000">1,001–5,000</option>
+                            <option value="5001+">5,001+</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
+                      <div>
+                        <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Implementation Timeline</label>
+                        <div className="relative">
+                          <select name="timeline" value={formData.timeline} onChange={handleChange} className="w-full h-12 pl-4 pr-10 appearance-none cursor-pointer rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10">
+                            <option value="">Select timeline</option>
+                            <option value="immediate">Immediately (within 30 days)</option>
+                            <option value="1-3months">1–3 months</option>
+                            <option value="3-6months">3–6 months</option>
+                            <option value="exploring">Just exploring</option>
+                          </select>
+                          <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <label className="flex items-center gap-3 h-12 px-4 rounded-lg border border-slate-200 bg-slate-50/70 cursor-pointer hover:border-slate-300 transition-colors">
                       <input
-                        type="text"
-                        name="district"
-                        required
-                        value={formData.district}
+                        type="checkbox"
+                        name="hasSchedulingProvider"
+                        checked={formData.hasSchedulingProvider}
                         onChange={handleChange}
-                        placeholder="Lincoln Unified School District"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all placeholder:text-gray-300 text-[var(--midnight-blue)]"
+                        className="w-4 h-4 rounded accent-[var(--midnight-blue)] shrink-0"
                       />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        State *
-                      </label>
-                      <select
-                        name="state"
-                        required
-                        value={formData.state}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all text-[var(--midnight-blue)]"
-                      >
-                        <option value="">Select state</option>
-                        {US_STATES.map((s) => (
-                          <option key={s} value={s}>{s}</option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        name="phone"
-                        required
-                        value={formData.phone}
-                        onChange={handleChange}
-                        placeholder="(555) 000-0000"
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all placeholder:text-gray-300 text-[var(--midnight-blue)]"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Your Role *
-                      </label>
-                      <select
-                        name="role"
-                        required
-                        value={formData.role}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all text-[var(--midnight-blue)]"
-                      >
-                        <option value="">Select your role</option>
-                        <option value="superintendent">Superintendent</option>
-                        <option value="administrator">Administrator / Principal</option>
-                        <option value="counselor">Counselor</option>
-                        <option value="it">IT Staff</option>
-                        <option value="other">Other</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Number of Students *
-                      </label>
-                      <select
-                        name="studentCount"
-                        required
-                        value={formData.studentCount}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all text-[var(--midnight-blue)]"
-                      >
-                        <option value="">Select range</option>
-                        <option value="0-500">Under 500</option>
-                        <option value="501-1000">501–1,000</option>
-                        <option value="1001-5000">1,001–5,000</option>
-                        <option value="5001+">5,001+</option>
-                      </select>
-                    </div>
-                    <div>
-                      <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                        Implementation Timeline
-                      </label>
-                      <select
-                        name="timeline"
-                        value={formData.timeline}
-                        onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all text-[var(--midnight-blue)]"
-                      >
-                        <option value="">Select timeline</option>
-                        <option value="immediate">Immediately (within 30 days)</option>
-                        <option value="1-3months">1–3 months</option>
-                        <option value="3-6months">3–6 months</option>
-                        <option value="exploring">Just exploring</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <label className="flex items-center gap-3 px-4 py-3.5 border border-gray-200 rounded-xl cursor-pointer hover:border-[var(--university-gold)]/50 transition-colors">
-                    <input
-                      type="checkbox"
-                      name="hasSchedulingProvider"
-                      checked={formData.hasSchedulingProvider}
-                      onChange={handleChange}
-                      className="w-4 h-4 rounded accent-[var(--university-gold)] shrink-0"
-                    />
-                    <span className="text-sm text-[var(--midnight-blue)]" style={{ fontWeight: 500 }}>
-                      Do you have a dedicated scheduling provider?
-                    </span>
-                  </label>
-
-                  <div>
-                    <label className="block text-sm text-[var(--midnight-blue)] mb-1.5" style={{ fontWeight: 600 }}>
-                      Your biggest scheduling challenge (optional)
+                      <span className="text-sm text-[var(--midnight-blue)]" style={{ fontWeight: 500 }}>
+                        Do you have a dedicated scheduling provider?
+                      </span>
                     </label>
-                    <textarea
-                      name="message"
-                      rows={3}
-                      value={formData.message}
-                      onChange={handleChange}
-                      placeholder="e.g. Too many conflicts, student course requests not getting met, scheduling takes too long..."
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[var(--university-gold)] focus:border-transparent transition-all resize-none placeholder:text-gray-300 text-[var(--midnight-blue)]"
-                    />
-                  </div>
 
-                  {/* Error banner */}
-                  {error && (
-                    <div className="flex items-start gap-3 bg-red-50 border border-red-100 rounded-xl p-4">
-                      <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
-                      <p className="text-red-700 text-sm">{error}</p>
+                    <div>
+                      <label className="block text-[13px] text-[var(--midnight-blue)]/80 mb-2" style={{ fontWeight: 600 }}>Your biggest scheduling challenge (optional)</label>
+                      <textarea
+                        name="message"
+                        rows={3}
+                        value={formData.message}
+                        onChange={handleChange}
+                        placeholder="e.g. Too many conflicts, student course requests not getting met, scheduling takes too long..."
+                        className="w-full py-3 resize-none px-4 rounded-lg border border-slate-200 bg-slate-50/70 text-[var(--midnight-blue)] placeholder:text-slate-400 transition-all hover:border-slate-300 focus:outline-none focus:bg-white focus:border-[var(--midnight-blue)] focus:ring-4 focus:ring-[var(--midnight-blue)]/10"
+                      />
                     </div>
-                  )}
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="w-full bg-[var(--university-gold)] text-[var(--midnight-blue)] py-4 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all hover:shadow-lg flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
-                    style={{ fontWeight: 700 }}
-                  >
-                    {loading ? (
-                      <>
-                        <Loader2 className="w-4 h-4 animate-spin" />
-                        Submitting…
-                      </>
-                    ) : (
-                      <>
-                        Request My Demo
-                        <ArrowRight className="w-5 h-5" />
-                      </>
+                    {error && (
+                      <div className="flex items-start gap-3 bg-red-50 border border-red-100 rounded-lg p-4">
+                        <AlertCircle className="w-4 h-4 text-red-500 shrink-0 mt-0.5" />
+                        <p className="text-red-700 text-sm">{error}</p>
+                      </div>
                     )}
-                  </button>
 
-                  <p className="text-xs text-center text-[var(--midnight-blue)]/40">
-                    No commitment required · We'll reach out within 1 business day
-                  </p>
-                </form>
-              </div>
-            )}
-          </motion.div>
-        </div>
+                    <div className="pt-2 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                      <p className="text-xs text-[var(--midnight-blue)]/40">
+                        No commitment required · We'll reach out within 1 business day
+                      </p>
+                      <button
+                        type="submit"
+                        disabled={loading}
+                        className="shrink-0 inline-flex items-center justify-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] h-12 px-8 rounded-lg hover:bg-[var(--university-gold)]/90 hover:shadow-lg hover:shadow-[var(--university-gold)]/30 transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                        style={{ fontWeight: 700 }}
+                      >
+                        {loading ? (
+                          <>
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                            Submitting…
+                          </>
+                        ) : (
+                          <>
+                            Request My Demo
+                            <ArrowRight className="w-4 h-4" />
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                </>
+              )}
+            </div>
+          </div>
+        </motion.div>
       </section>
     </div>
   );
