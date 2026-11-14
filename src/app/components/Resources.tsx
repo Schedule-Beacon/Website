@@ -1,6 +1,5 @@
 import { motion } from "motion/react";
 import { Eyebrow, LightHero } from "./Brand";
-import { Link } from "react-router";
 import { useState } from "react";
 
 const resourceCategories = [
@@ -112,38 +111,6 @@ export function Resources() {
         </div>
       </section>
 
-      {/* ── Support CTA ─────────────────────────────────────── */}
-      <section className="py-20 bg-[var(--midnight-blue)]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-4xl text-white mb-6">Need a hand?</h2>
-            <p className="text-white/60 mb-10 max-w-xl mx-auto">
-              Our dedicated scheduling experts are here to help with setup, training, troubleshooting, or anything else.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-[var(--university-gold)] text-[var(--midnight-blue)] px-8 py-4 rounded-xl hover:bg-[var(--university-gold)]/90 transition-all"
-                style={{ fontWeight: 700 }}
-              >
-                Contact Support
-              </Link>
-              <Link
-                to="/faq"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 text-white px-8 py-4 rounded-xl hover:bg-white/15 transition-all border border-white/20"
-                style={{ fontWeight: 600 }}
-              >
-                Browse FAQs
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 }
