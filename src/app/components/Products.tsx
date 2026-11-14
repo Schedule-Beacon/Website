@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { Link } from "react-router";
 import { ArrowRight } from "lucide-react";
 import { Eyebrow, NavyHero } from "./Brand";
+import masterSchedule from "../../assets/master-schedule-screenshot.png";
 
 const securityPillars = [
   {
@@ -243,58 +244,61 @@ export function Products() {
 
       {/* ── Benefits ─────────────────────────────────────────── */}
       <section id="difference" className="py-24 bg-[var(--midnight-blue)] relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage:
-              "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
-        <div className="absolute -top-40 right-0 w-[600px] h-[500px] rounded-full bg-[var(--university-gold)] opacity-[0.08] blur-3xl" />
-        <div className="max-w-6xl mx-auto px-6 relative z-10">
+        <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-[var(--university-gold)] opacity-[0.07] blur-3xl" />
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-16 items-center">
+          {/* Left: statement + product shot */}
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-6 items-end mb-14"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.7 }}
           >
-            <div>
-              <Eyebrow align="left">The Difference</Eyebrow>
-              <h2 className="text-4xl lg:text-5xl text-white" style={{ lineHeight: 1.1 }}>
-                Real results for <span className="text-[var(--university-gold)]">real districts</span>
-              </h2>
-            </div>
-            <p className="text-white/60 text-lg lg:pb-2" style={{ lineHeight: 1.7 }}>
+            <Eyebrow align="left">The Difference</Eyebrow>
+            <h2 className="text-4xl lg:text-5xl text-white mb-6" style={{ lineHeight: 1.1 }}>
+              Real results for <span className="text-[var(--university-gold)]">real districts</span>
+            </h2>
+            <p className="text-white/60 text-lg mb-10 max-w-xl" style={{ lineHeight: 1.7 }}>
               Better schedules show up everywhere: in the classes students get, the time staff win back, and how
               clearly leaders can see what's happening across the district.
             </p>
+            <div className="relative">
+              <div className="absolute -inset-3 bg-[var(--university-gold)]/20 blur-2xl rounded-3xl" />
+              <img
+                src={masterSchedule}
+                alt="Schedule Beacon master schedule view"
+                className="relative w-full rounded-xl shadow-2xl shadow-black/40 ring-1 ring-white/10"
+              />
+            </div>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 border-t border-l border-white/10">
+          {/* Right: flowing list */}
+          <ol className="space-y-9">
             {benefits.map((b, i) => (
-              <motion.div
+              <motion.li
                 key={b.title}
-                className="group relative p-8 border-r border-b border-white/10 hover:bg-white/[0.04] transition-colors"
-                initial={{ opacity: 0, y: 16 }}
+                className="flex gap-6"
+                initial={{ opacity: 0, y: 14 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.06 }}
+                transition={{ duration: 0.45, delay: i * 0.07 }}
               >
-                <div className="absolute top-0 left-0 h-0.5 w-0 bg-[var(--university-gold)] group-hover:w-full transition-all duration-500" />
-                <div className="text-[var(--university-gold)] text-sm mb-6" style={{ fontWeight: 800, letterSpacing: "0.1em" }}>
+                <span
+                  className="text-[var(--university-gold)] text-3xl leading-none w-12 shrink-0"
+                  style={{ fontWeight: 900 }}
+                >
                   {String(i + 1).padStart(2, "0")}
+                </span>
+                <div>
+                  <h3 className="text-white text-xl mb-1.5" style={{ fontWeight: 800, lineHeight: 1.25 }}>
+                    {b.title}
+                  </h3>
+                  <p className="text-white/55" style={{ lineHeight: 1.65 }}>
+                    {b.body}
+                  </p>
                 </div>
-                <h3 className="text-white text-xl mb-3" style={{ fontWeight: 800, lineHeight: 1.25 }}>
-                  {b.title}
-                </h3>
-                <p className="text-white/55 text-sm" style={{ lineHeight: 1.7 }}>
-                  {b.body}
-                </p>
-              </motion.div>
+              </motion.li>
             ))}
-          </div>
+          </ol>
         </div>
       </section>
 
