@@ -211,11 +211,7 @@ export function About() {
             transition={{ duration: 0.6 }}
           >
             <Eyebrow>The Team</Eyebrow>
-            <h2 className="text-4xl lg:text-5xl text-white mb-5">Meet the founders</h2>
-            <p className="text-white/65 text-lg max-w-2xl mx-auto" style={{ lineHeight: 1.7 }}>
-              Two Alfred University student-athletes building the scheduling platform we wish our own schools
-              had.
-            </p>
+            <h2 className="text-4xl lg:text-5xl text-white">Meet the founders</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
